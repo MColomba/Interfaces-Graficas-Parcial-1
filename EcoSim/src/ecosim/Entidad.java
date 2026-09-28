@@ -1,6 +1,6 @@
 package ecosim;
 
-abstract class Entidad {
+public abstract class Entidad {
     //ATRIBUTOS
     private String nombre;
     private double energia;
@@ -10,8 +10,19 @@ abstract class Entidad {
     //CONSTRUCTOR
     public Entidad(String nombre, double energia, int edad, boolean viva){
         this.nombre = nombre;
-        this.energia = energia;
-        this.edad = edad;
+        //validaciones en el constructor
+        if (energia < 0){
+            this.energia = 0;
+        }
+        else{
+            this.energia = energia;
+        }
+        if (edad < 0){
+            this.edad = 0;
+        }
+        else{
+            this.edad = edad;
+        }
         this.viva = viva;
     }
     
@@ -38,11 +49,21 @@ abstract class Entidad {
     }
     
     public void setEnergia(double energia){
-        this.energia = energia;
+        if (energia < 0){
+            this.energia = 0;
+        }
+        else{
+            this.energia = energia;
+        }
     }
     
     public void setEdad(int edad){
-        this.edad = edad;
+        if (edad < 0){
+            this.edad = 0;
+        }
+        else{
+            this.edad = edad;
+        }
     }
     
     public void setViva(boolean viva){
@@ -50,12 +71,11 @@ abstract class Entidad {
     }
     
     //METODOS
-    abstract void actuar(Ecosistema eco);
-    
-    abstract void mostrarEstado();
+    public abstract void actuar(Ecosistema eco);
+    public abstract void mostrarEstado();
     
     public void envejecer(){
         this.edad += 1;
-        this.energia -= 1;
+        setEnergia(this.energia - 2.0); //asi para que pase por la validacion
     }
 }
