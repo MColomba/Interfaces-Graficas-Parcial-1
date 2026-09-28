@@ -13,8 +13,31 @@ public class Conejo extends Animal implements Reproducible{
     
     //METODOS
     @Override
-    public void comer(Ecosistema eco){
-        //ArrayList<Planta> plantas = eco
+    public void comer(Ecosistema eco) {
+
+        Planta plantaEncontrada = null;
+
+        for (Planta planta : eco.getPlantas()) {
+            if (planta.getViva()) {
+                plantaEncontrada = planta;
+                break;
+            }
+        }
+
+        if (plantaEncontrada != null) {
+            int energiaGanada = plantaEncontrada.serComida();
+
+            this.setEnergia(this.getEnergia() + energiaGanada);
+
+            System.out.println(this.getNombre()
+                    + " comio una planta y gano "
+                    + energiaGanada + " de energia.");
+        } else {
+            this.setEnergia(this.getEnergia() - 15);
+
+            System.out.println(this.getNombre()
+                    + " no encontro plantas y perdio 15 de energia.");
+        }
     }
     
     public void actuar(Ecosistema eco){
