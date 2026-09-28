@@ -40,9 +40,10 @@ public class Conejo extends Animal implements Reproducible{
         }
     }
     
+    @Override
     public void actuar(Ecosistema eco){
         comer(eco);
-        reproduccion(eco);
+        reproducirse(eco);
     }
     
     @Override
@@ -53,7 +54,41 @@ public class Conejo extends Animal implements Reproducible{
             System.out.println("Peligro!!");
         }
     }
-    public void reproduccion(Ecosistema eco){
-        // si energía > 60 y hay al menos otro conejo vivo, puede generar un nuevo Conejo
+    @Override
+    public void reproducirse(Ecosistema eco) {
+
+        if (!puedeReproducirse()) {
+            return;
+        }
+
+        boolean hayOtroConejoVivo = false;
+
+        for (Conejo conejo : eco.getConejos()) {
+            if (conejo != this && conejo.getViva()) {
+                hayOtroConejoVivo = true;
+                break;
+            }
+        }
+
+        if (!hayOtroConejoVivo) {
+            return;
+        }
+        Conejo nuevoConejo = new Conejo(
+            "Conejo nuevo",
+            50,
+            0,
+            true,
+            this.getVelocidad(),
+            this.getPeso()
+    );
+
+    eco.getConejos().add(nuevoConejo);
+
+    System.out.println(this.getNombre()
+            + " se reprodujo y nacio un nuevo conejo.");
+        }
+    @Override
+    public boolean puedeReproducirse() {
+        return this.getEnergia() > 60 && this.getViva();
     }
 }
