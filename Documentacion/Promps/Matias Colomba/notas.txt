@@ -1,0 +1,8 @@
+En una parte de la conversacion se puede ver que menciona un proyecto test.parcial1, esto fue algo que yo arranque solo viendo con los archivos de las clases que nos mando (presentaciones, cheatsheets, etc) y realice sin uso de ia, por eso le pedi a la ia que tambien me corrija los errores en estas mismas.
+
+link de la conversacion
+https://share.gemini.google/ZlPKKGhJ5lOj
+
+Version de Netbeans: 28
+Version de JDK: 25
+Librerias usadas: java.util.ArrayList
