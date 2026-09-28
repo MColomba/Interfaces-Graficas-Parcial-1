@@ -4,39 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Ecosistema: el "director de orquesta" de la simulación (parte de BRUNO).
  *
  * Guarda las poblaciones (plantas, conejos, lobos), el clima y el turno actual,
  * ejecuta cada turno en el orden que pide la consigna y arma el reporte final.
  *
- * ---------------------------------------------------------------------------
- * CONTRATO CON EL RESTO DEL GRUPO (métodos públicos que pueden usar):
- *
- *   Consultas:
- *     getPlantasVivas() / getConejosVivos() / getLobosVivos()  -> listas solo con las vivas
- *     getClimaActual()
- *     getMultiplicadorReproduccionPlantas()  -> 1.5 / 2.0 / 0.5 / 0.0 según el clima  (Maxi)
- *     getBonusExitoCaza()                    -> 0.20 en INVIERNO, 0 en el resto        (Nico)
- *     generarNombre("planta" | "conejo" | "lobo") -> nombre único para una cría nueva
- *
- *   Acciones:
- *     agregarPlanta(Planta nueva) / agregarConejo(Conejo nuevo)
- *         -> las usan reproducirse() de Planta y Conejo; cuentan como NACIMIENTO
- *     registrarEvento(String texto)
- *         -> imprime el evento bajo "-- Eventos --" y lo cuenta para el
- *            "turno de mayor actividad" del reporte final
- *
- *   Lo que Ecosistema asume de las clases de los demás (si algún nombre difiere,
- *   ajustar SOLO los métodos crearPlanta/crearConejo/crearLobo o el nombre del método):
- *     Entidad:      getNombre(), getEnergia(), setEnergia(double), getEdad(),
- *                   getViva(), setViva(boolean), envejecer(), actuar(Ecosistema)
- *     Planta:       Planta(String nombre, double energia, int edad, boolean viva, int tamanio)  [A CONFIRMAR CON MAXI]
- *     Conejo:       Conejo(String nombre, double energia, int edad, boolean viva, int velocidad, double peso)
- *     Lobo:         Lobo(String nombre, double energia, int edad, boolean viva, int velocidad, double peso, int exitosCaza)
- *     Mortal:       estaVivo(), verificarMuerte()
- *     Peligroso:    getNivelPeligro()
- *     Clima:        SOLEADO, LLUVIOSO, SEQUIA, INVIERNO
- *     Estadisticas: registrarTurno(int turno, int plantas, int conejos, int lobos), mostrarReporteEstadistico()
  * ---------------------------------------------------------------------------
  */
 public class Ecosistema {
@@ -79,7 +50,7 @@ public class Ecosistema {
     private ArrayList<Integer> eventosPorTurno;
     private int eventosTurnoActual;
 
-    // Estadísticas en tiempo real (bonus) — la clase la hizo Mati
+    // Estadísticas en tiempo real (bonus) 
     private Estadisticas estadisticas;
 
     // Para generar nombres
