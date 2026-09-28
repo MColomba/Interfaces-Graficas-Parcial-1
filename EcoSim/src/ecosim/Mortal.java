@@ -1,6 +1,13 @@
 package ecosim;
 
 public interface Mortal {
+    //METODOS
     public boolean estaVivo();
-    public boolean morir();
+    public void morir();
+    
+    default void verificarMuerte(){
+        if (!estaVivo()){
+            morir();
+        }
+    }
 }
