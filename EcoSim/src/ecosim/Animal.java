@@ -1,6 +1,6 @@
 package ecosim;
 
-abstract class Animal extends Entidad implements Mortal{
+public abstract class Animal extends Entidad implements Mortal{
     //ATRIBUTOS
     //Heredados: String nombre, double energia, int edad, boolean viva
     private int velocidad;
@@ -36,5 +36,17 @@ abstract class Animal extends Entidad implements Mortal{
 
     public void moverse(){
         System.out.println(this.getNombre() + " se movio");
+    }
+    
+    @Override
+    public boolean estaVivo(){
+        return (this.getViva()) && (this.getEnergia() > 0);
+    }
+    
+    @Override
+    public void morir(){
+        this.setViva(false);
+        this.setEnergia(0);
+        System.out.println(this.getNombre() + " ha muerto");
     }
 }
