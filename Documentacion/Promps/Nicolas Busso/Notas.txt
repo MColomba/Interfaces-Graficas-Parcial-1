@@ -1,0 +1,24 @@
+Nicolás Busso
+
+Trabajo realizado:
+- Desarrollo de la lógica de alimentación de la clase Conejo.
+- Desarrollo de la lógica de reproducción de la clase Conejo.
+- Desarrollo del sistema de caza de la clase Lobo.
+- Implementación de probabilidad de caza dependiente de la energía del lobo.
+- Registro de cazas exitosas del lobo.
+- Implementación de la interfaz Peligroso en Lobo.
+- Revisión del código desarrollado según la consigna del trabajo práctico.
+- Uso de Git/GitHub para registrar y subir los cambios realizados.
+
+Herramienta de IA utilizada:
+ChatGPT
+
+Uso de la IA:
+Se utilizó ChatGPT como herramienta de consulta y apoyo para analizar la consigna, dividir y organizar el trabajo entre los integrantes, comprender los conceptos de programación orientada a objetos involucrados, revisar el código desarrollado, detectar errores y verificar que las funcionalidades implementadas se correspondieran con los requisitos del trabajo práctico.
+
+La implementación fue revisada y trabajada de forma progresiva, verificando el funcionamiento y la responsabilidad de las clases antes de incorporar los cambios al repositorio.
+
+Entorno de desarrollo:
+Apache NetBeans
+JDK 25
+Lenguaje: Java
