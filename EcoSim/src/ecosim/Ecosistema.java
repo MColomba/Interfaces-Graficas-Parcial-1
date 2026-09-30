@@ -13,7 +13,7 @@ import java.util.Random;
 public class Ecosistema {
 
     // ===================== Constantes =====================
-    public static final int MAX_LOBOS_TOTALES = 5;       // tope de lobos en toda la simulación
+    public static final int MAX_LOBOS_TOTALES = 5;       // tope de lobos en toda la simulacion
     public static final int INTERVALO_INTERVENCION = 3;  // el jugador interviene cada 3 turnos
 
     private static final String[] NOMBRES_CONEJOS = {
@@ -31,7 +31,7 @@ public class Ecosistema {
     private int turnoActual;
     private int turnosTotales;
 
-    // Historial de TODO lo que existió alguna vez (sirve para el reporte: longevidad, cacerías)
+    // Historial de TODO lo que existio alguna vez (sirve para el reporte: longevidad, cacerias)
     private ArrayList<Planta> historialPlantas;
     private ArrayList<Conejo> historialConejos;
     private ArrayList<Lobo> historialLobos;
@@ -50,7 +50,7 @@ public class Ecosistema {
     private ArrayList<Integer> eventosPorTurno;
     private int eventosTurnoActual;
 
-    // Estadísticas en tiempo real (bonus) 
+    // Estadisticas en tiempo real (bonus) 
     private Estadisticas estadisticas;
 
     // Para generar nombres
@@ -82,7 +82,7 @@ public class Ecosistema {
         this.random = new Random();
     }
 
-    // ===================== Getters y setters (con validación) =====================
+    // ===================== Getters y setters (con validacion) =====================
     public ArrayList<Planta> getPlantas() { return plantas; }
     public ArrayList<Conejo> getConejos() { return conejos; }
     public ArrayList<Lobo> getLobos() { return lobos; }
@@ -145,7 +145,7 @@ public class Ecosistema {
 
     // ===================== Efectos del clima =====================
 
-    /** Multiplicador de reproducción de las plantas según el clima actual. */
+    /** Multiplicador de reproduccion de las plantas segun el clima actual. */
     public double getMultiplicadorReproduccionPlantas() {
         if (climaActual == Clima.SOLEADO) return 1.5;
         if (climaActual == Clima.LLUVIOSO) return 2.0;
@@ -159,7 +159,7 @@ public class Ecosistema {
         return (climaActual == Clima.INVIERNO) ? 0.20 : 0.0;
     }
 
-    /** Energía que ganan (+) o pierden (-) los conejos por turno debido al clima. */
+    /** Energia que ganan (+) o pierden (-) los conejos por turno debido al clima. */
     private double efectoClimaConejos() {
         if (climaActual == Clima.SOLEADO) return 5;
         if (climaActual == Clima.LLUVIOSO) return 3;
@@ -168,7 +168,7 @@ public class Ecosistema {
         return 0;
     }
 
-    /** Energía que ganan (+) o pierden (-) los lobos por turno debido al clima. */
+    /** Energia que ganan (+) o pierden (-) los lobos por turno debido al clima. */
     private double efectoClimaLobos() {
         return (climaActual == Clima.LLUVIOSO) ? -5 : 0;
     }
@@ -177,24 +177,24 @@ public class Ecosistema {
     public static String nombreClima(Clima clima) {
         if (clima == Clima.SOLEADO) return "Soleado";
         if (clima == Clima.LLUVIOSO) return "Lluvioso";
-        if (clima == Clima.SEQUIA) return "Sequía";
+        if (clima == Clima.SEQUIA) return "Sequia";
         if (clima == Clima.INVIERNO) return "Invierno";
         return "Desconocido";
     }
 
     public void cambiarClima(Clima nuevo) {
         if (nuevo == null) {
-            System.out.println("No se puede cambiar el clima: valor inválido.");
+            System.out.println("No se puede cambiar el clima: valor invalido.");
             return;
         }
         String anterior = nombreClima(climaActual);
         setClimaActual(nuevo);
-        System.out.println("El clima cambió de " + anterior + " a " + nombreClima(nuevo) + ".");
+        System.out.println("El clima cambio de " + anterior + " a " + nombreClima(nuevo) + ".");
     }
 
-    // ===================== Nombres y creación de entidades =====================
+    // ===================== Nombres y creacion de entidades =====================
 
-    /** Devuelve "planta", "conejo" o "lobo" (o null si el texto no es un tipo válido). */
+    /** Devuelve "planta", "conejo" o "lobo" (o null si el texto no es un tipo valido). */
     public static String normalizarTipo(String tipo) {
         if (tipo == null) return null;
         String t = tipo.trim().toLowerCase();
@@ -202,7 +202,7 @@ public class Ecosistema {
         return null;
     }
 
-    /** Genera un nombre único para una entidad nueva del tipo indicado (null si el tipo no existe). */
+    /** Genera un nombre unico para una entidad nueva del tipo indicado (null si el tipo no existe). */
     public String generarNombre(String tipo) {
         String t = normalizarTipo(tipo);
         if (t == null) return null;
@@ -218,7 +218,7 @@ public class Ecosistema {
         return nombreDePool(NOMBRES_LOBOS, contadorLobos);
     }
 
-    // Usa la lista de nombres y, cuando se acaba, repite con un número (Blas-2, Blas-3...)
+    // Usa la lista de nombres y, cuando se acaba, repite con un numero (Blas-2, Blas-3...)
     private String nombreDePool(String[] pool, int numero) {
         String base = pool[(numero - 1) % pool.length];
         int vuelta = (numero - 1) / pool.length;
@@ -257,20 +257,20 @@ public class Ecosistema {
     private void registrarConejo(Conejo c) { conejos.add(c); historialConejos.add(c); }
     private void registrarLobo(Lobo l) { lobos.add(l); historialLobos.add(l); }
 
-    /** Crea la población inicial (energía aleatoria en rangos razonables). No cuenta como "agregado por el jugador". */
+    /** Crea la poblacion inicial (energia aleatoria en rangos razonables). No cuenta como "agregado por el jugador". */
     public void inicializarPoblacion(int cantPlantas, int cantConejos, int cantLobos) {
         if (cantPlantas < 0 || cantConejos < 0 || cantLobos < 0) {
             throw new IllegalArgumentException("Las cantidades no pueden ser negativas.");
         }
         if (cantLobos > MAX_LOBOS_TOTALES) {
-            throw new IllegalArgumentException("No puede haber más de " + MAX_LOBOS_TOTALES + " lobos.");
+            throw new IllegalArgumentException("No puede haber mas de " + MAX_LOBOS_TOTALES + " lobos.");
         }
         for (int i = 0; i < cantPlantas; i++) registrarPlanta(crearPlanta(energiaAleatoriaPara("planta")));
         for (int i = 0; i < cantConejos; i++) registrarConejo(crearConejo(energiaAleatoriaPara("conejo")));
         for (int i = 0; i < cantLobos; i++) registrarLobo(crearLobo(energiaAleatoriaPara("lobo")));
     }
 
-    /** Las plantas y conejos nuevos que nacen por reproducción entran por acá (cuenta como nacimiento). */
+    /** Las plantas y conejos nuevos que nacen por reproduccion entran por aca (cuenta como nacimiento). */
     public void agregarPlanta(Planta nueva) {
         if (nueva == null) return;
         registrarPlanta(nueva);
@@ -283,7 +283,7 @@ public class Ecosistema {
         nacimientosConejos++;
     }
 
-    /** ¿Se puede agregar otro lobo? (máximo 5 en TODA la simulación, contando los iniciales). */
+    /** ¿Se puede agregar otro lobo? (maximo 5 en TODA la simulacion, contando los iniciales). */
     public boolean puedeAgregarLobo() {
         return historialLobos.size() < MAX_LOBOS_TOTALES;
     }
@@ -293,30 +293,30 @@ public class Ecosistema {
     }
 
     /**
-     * SOBRECARGA 1: agrega una entidad con energía aleatoria.
+     * SOBRECARGA 1: agrega una entidad con energia aleatoria.
      * @return la entidad creada, o null si no se pudo agregar.
      */
     public Entidad agregarEntidad(String tipo) {
         String t = normalizarTipo(tipo);
         if (t == null) {
-            System.out.println("Tipo de entidad inválido: '" + tipo + "'. Use planta, conejo o lobo.");
+            System.out.println("Tipo de entidad invalido: '" + tipo + "'. Use planta, conejo o lobo.");
             return null;
         }
         return agregarEntidad(t, energiaAleatoriaPara(t));
     }
 
     /**
-     * SOBRECARGA 2: agrega una entidad con la energía inicial indicada.
+     * SOBRECARGA 2: agrega una entidad con la energia inicial indicada.
      * @return la entidad creada, o null si no se pudo agregar.
      */
     public Entidad agregarEntidad(String tipo, double energiaInicial) {
         String t = normalizarTipo(tipo);
         if (t == null) {
-            System.out.println("Tipo de entidad inválido: '" + tipo + "'. Use planta, conejo o lobo.");
+            System.out.println("Tipo de entidad invalido: '" + tipo + "'. Use planta, conejo o lobo.");
             return null;
         }
         if (energiaInicial <= 0) {
-            System.out.println("La energía inicial debe ser mayor que 0.");
+            System.out.println("La energia inicial debe ser mayor que 0.");
             return null;
         }
 
@@ -334,8 +334,8 @@ public class Ecosistema {
         }
         // lobo
         if (!puedeAgregarLobo()) {
-            System.out.println("No se pueden agregar más lobos: el máximo es " + MAX_LOBOS_TOTALES
-                    + " en toda la simulación.");
+            System.out.println("No se pueden agregar mas lobos: el maximo es " + MAX_LOBOS_TOTALES
+                    + " en toda la simulacion.");
             return null;
         }
         Lobo l = crearLobo(energiaInicial);
@@ -353,7 +353,7 @@ public class Ecosistema {
         eventosTurnoActual++;
     }
 
-    // ===================== Estado y fin de simulación =====================
+    // ===================== Estado y fin de simulacion =====================
 
     private String lineaConteo() {
         return "Plantas: " + contarPlantasVivas()
@@ -365,7 +365,7 @@ public class Ecosistema {
         System.out.println("Estado: " + lineaConteo() + "  | Clima: " + nombreClima(climaActual));
     }
 
-    /** true si alguna de las tres poblaciones llegó a 0. */
+    /** true si alguna de las tres poblaciones llego a 0. */
     public boolean ecosistemaColapsado() {
         return contarPlantasVivas() == 0 || contarConejosVivos() == 0 || contarLobosVivos() == 0;
     }
@@ -379,12 +379,12 @@ public class Ecosistema {
         return extintas;
     }
 
-    /** La simulación termina al completar los turnos o si el ecosistema colapsa. */
+    /** La simulacion termina al completar los turnos o si el ecosistema colapsa. */
     public boolean simulacionTerminada() {
         return turnoActual >= turnosTotales || ecosistemaColapsado();
     }
 
-    /** true si después del turno que se acaba de jugar toca el menú de intervención. */
+    /** true si despues del turno que se acaba de jugar toca el menu de intervencion. */
     public boolean esTurnoDeIntervencion() {
         return turnoActual > 0
                 && turnoActual % INTERVALO_INTERVENCION == 0
@@ -398,7 +398,7 @@ public class Ecosistema {
      *  1. Plantas y conejos se reproducen (un solo recorrido con ArrayList<Reproducible>)
      *  2. Conejos comen
      *  3. Lobos cazan
-     *  4. Todos envejecen / gastan energía base (+ efecto del clima)
+     *  4. Todos envejecen / gastan energia base (+ efecto del clima)
      *  5. Se verifican las muertes
      *  6. Se muestran los eventos (a medida que ocurren, bajo "-- Eventos --")
      *  7. Se muestra el estado
@@ -434,13 +434,13 @@ public class Ecosistema {
         ArrayList<Reproducible> reproducibles = new ArrayList<>();
         reproducibles.addAll(getPlantasVivas());
         reproducibles.addAll(getConejosVivos());
-        // Recorremos una copia: las crías nuevas se agregan a las listas reales sin romper el for
+        // Recorremos una copia: las crias nuevas se agregan a las listas reales sin romper el for
         for (Reproducible r : reproducibles) {
             r.intentarReproduccion(this);
         }
     }
 
-    // 2. Conejos buscan plantas y comen (la reproducción ya se resolvió en el paso 1)
+    // 2. Conejos buscan plantas y comen (la reproduccion ya se resolvio en el paso 1)
     private void faseConejosComen() {
         for (Conejo c : getConejosVivos()) {
             if (c.getViva()) {
@@ -458,7 +458,7 @@ public class Ecosistema {
         }
     }
 
-    // 4. Envejecer, gastar energía base y aplicar el efecto del clima
+    // 4. Envejecer, gastar energia base y aplicar el efecto del clima
     private void faseEnvejecimiento() {
         for (Planta p : getPlantasVivas()) {
             p.envejecer();
@@ -475,11 +475,11 @@ public class Ecosistema {
 
     // 5. Verificar muertes y sacar a los muertos de las listas
     private void faseMuertes() {
-        // Animales: Mortal.verificarMuerte() (método default de la interface).
-        // Importante: hay que llamarlo mientras la entidad TODAVÍA figura viva (getViva()==true).
-        // Adentro, verificarMuerte() se fija si estaVivo() dio false (energía <= 0) y ahí
-        // recién llama a morir(). Si filtráramos por estaVivo() en vez de getViva(), nunca se
-        // dispararía morir(), porque estaVivo() ya daría false antes de entrar al método.
+        // Animales: Mortal.verificarMuerte() (metodo default de la interface).
+        // Importante: hay que llamarlo mientras la entidad TODAVIA figura viva (getViva()==true).
+        // Adentro, verificarMuerte() se fija si estaVivo() dio false (energia <= 0) y ahi
+        // recien llama a morir(). Si filtraramos por estaVivo() en vez de getViva(), nunca se
+        // dispararia morir(), porque estaVivo() ya daria false antes de entrar al metodo.
         for (Conejo c : conejos) {
             if (c.getViva()) {
                 c.verificarMuerte();
@@ -491,11 +491,11 @@ public class Ecosistema {
             }
         }
 
-        // Plantas: no son Mortal, así que se controla acá
+        // Plantas: no son Mortal, asi que se controla aca
         for (Planta p : plantas) {
             if (p.getViva() && p.getEnergia() <= 0) {
                 p.setViva(false);
-                registrarEvento("Planta '" + p.getNombre() + "' murió (sin energía)");
+                registrarEvento("Planta '" + p.getNombre() + "' murio (sin energia)");
             }
         }
 
@@ -505,11 +505,11 @@ public class Ecosistema {
         int lobosMuertos = retirarMuertas(lobos);
         muertesConejos += conejosMuertos;
         muertesLobos += lobosMuertos;
-        // Las muertes de animales las imprime verificarMuerte(); acá solo suman actividad
+        // Las muertes de animales las imprime verificarMuerte(); aca solo suman actividad
         eventosTurnoActual += conejosMuertos + lobosMuertos;
     }
 
-    // Saca de la lista las entidades que ya no están vivas y devuelve cuántas sacó
+    // Saca de la lista las entidades que ya no estan vivas y devuelve cuantas saco
     private int retirarMuertas(ArrayList<? extends Entidad> lista) {
         int antes = lista.size();
         lista.removeIf(e -> !e.getViva());
@@ -521,19 +521,19 @@ public class Ecosistema {
     public void generarReporteFinal() {
         System.out.println();
         System.out.println("==================================================");
-        System.out.println("           REPORTE FINAL DE LA SIMULACIÓN");
+        System.out.println("           REPORTE FINAL DE LA SIMULACION");
         System.out.println("==================================================");
 
         // --- Causa de fin ---
         if (ecosistemaColapsado()) {
             System.out.println("Causa de fin: COLAPSO del ecosistema en el turno " + turnoActual + ".");
-            System.out.println("Población extinguida: " + String.join(", ", getPoblacionesExtintas()) + ".");
+            System.out.println("Poblacion extinguida: " + String.join(", ", getPoblacionesExtintas()) + ".");
         } else {
             System.out.println("Causa de fin: se completaron los " + turnosTotales + " turnos configurados.");
         }
         System.out.println("Turnos jugados: " + turnoActual + " de " + turnosTotales);
         System.out.println("Clima final: " + nombreClima(climaActual));
-        System.out.println("Población final -> " + lineaConteo());
+        System.out.println("Poblacion final -> " + lineaConteo());
 
         // --- Turno de mayor actividad ---
         System.out.println();
@@ -552,14 +552,14 @@ public class Ecosistema {
             System.out.println("Turno de mayor actividad: turno " + mejorTurno + " (" + mejorCantidad + " eventos)");
         }
 
-        // --- Más longevas ---
+        // --- Mas longevas ---
         System.out.println();
-        System.out.println("-- Entidades más longevas --");
+        System.out.println("-- Entidades mas longevas --");
         imprimirLongeva("Planta", masLongeva(historialPlantas));
         imprimirLongeva("Conejo", masLongeva(historialConejos));
         imprimirLongeva("Lobo", masLongeva(historialLobos));
 
-        // --- Lobo con más cacerías ---
+        // --- Lobo con mas cacerias ---
         Lobo cazador = null;
         for (Lobo l : historialLobos) {
             if (cazador == null || l.getExitosCaza() > cazador.getExitosCaza()) {
@@ -567,15 +567,15 @@ public class Ecosistema {
             }
         }
         if (cazador != null && cazador.getExitosCaza() > 0) {
-            System.out.println("Lobo con más cacerías exitosas: '" + cazador.getNombre()
+            System.out.println("Lobo con mas cacerias exitosas: '" + cazador.getNombre()
                     + "' (" + cazador.getExitosCaza() + ")");
         } else {
-            System.out.println("Lobo con más cacerías exitosas: ningún lobo logró cazar.");
+            System.out.println("Lobo con mas cacerias exitosas: ningun lobo logro cazar.");
         }
 
         // --- Nacimientos y muertes ---
         System.out.println();
-        System.out.println("-- Nacimientos (por reproducción) --");
+        System.out.println("-- Nacimientos (por reproduccion) --");
         System.out.println("Plantas: " + nacimientosPlantas + " | Conejos: " + nacimientosConejos
                 + " | Lobos: 0 (los lobos no se reproducen)");
         System.out.println("Agregados por el jugador: Plantas: " + agregadasPlantasJugador
@@ -584,7 +584,7 @@ public class Ecosistema {
         System.out.println("Plantas: " + muertesPlantas + " | Conejos: " + muertesConejos
                 + " | Lobos: " + muertesLobos);
 
-        // --- Bonus: estadísticas de población (clase Estadisticas de Mati) ---
+        // --- Bonus: estadisticas de poblacion (clase Estadisticas de Mati) ---
         System.out.println();
         estadisticas.mostrarReporteEstadistico();
 
@@ -596,7 +596,7 @@ public class Ecosistema {
         System.out.println("==================================================");
     }
 
-    // Devuelve la entidad con más edad de la lista (o null si está vacía)
+    // Devuelve la entidad con mas edad de la lista (o null si esta vacia)
     private Entidad masLongeva(ArrayList<? extends Entidad> lista) {
         Entidad mejor = null;
         for (Entidad e : lista) {
@@ -609,9 +609,9 @@ public class Ecosistema {
 
     private void imprimirLongeva(String tipo, Entidad e) {
         if (e == null) {
-            System.out.println(tipo + " más longevo/a: no hubo.");
+            System.out.println(tipo + " mas longevo/a: no hubo.");
         } else {
-            System.out.println(tipo + " más longevo/a: '" + e.getNombre() + "' (edad: " + e.getEdad() + ")");
+            System.out.println(tipo + " mas longevo/a: '" + e.getNombre() + "' (edad: " + e.getEdad() + ")");
         }
     }
 

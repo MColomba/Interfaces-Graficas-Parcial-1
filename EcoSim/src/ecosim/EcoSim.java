@@ -11,9 +11,9 @@ import java.util.Scanner;
  * EcoSim: clase principal (Main) del Simulador de Ecosistema 
  *
  * Se encarga de:
- *   1. La configuración inicial (con validación de rangos y confirmación)
+ *   1. La configuracion inicial (con validacion de rangos y confirmacion)
  *   2. El loop principal: un turno por cada Enter
- *   3. El menú de intervención cada 3 turnos
+ *   3. El menu de intervencion cada 3 turnos
  *   4. Mostrar el reporte final
  */
 public class EcoSim {
@@ -41,25 +41,25 @@ public class EcoSim {
             ejecutarSimulacion(eco);
 
             System.out.println();
-            System.out.println("=== FIN DE LA SIMULACIÓN ===");
+            System.out.println("=== FIN DE LA SIMULACION ===");
             eco.generarReporteFinal();
         } catch (NoSuchElementException e) {
-            // Pasa si se cierra la entrada (Ctrl+D / Ctrl+Z) en medio de la simulación
+            // Pasa si se cierra la entrada (Ctrl+D / Ctrl+Z) en medio de la simulacion
             System.out.println();
-            System.out.println("Se cerró la entrada de datos. Simulación interrumpida.");
+            System.out.println("Se cerro la entrada de datos. Simulacion interrumpida.");
         } finally {
             scanner.close();
         }
     }
 
     // =====================================================================
-    // 1. CONFIGURACIÓN INICIAL
+    // 1. CONFIGURACION INICIAL
     // =====================================================================
 
     private static Ecosistema configurarSimulacion() {
         while (true) {
             System.out.println();
-            System.out.println("=== CONFIGURACIÓN INICIAL ===");
+            System.out.println("=== CONFIGURACION INICIAL ===");
 
             int plantas = leerEnteroEnRango("Cantidad inicial de plantas", MIN_PLANTAS, MAX_PLANTAS);
             int conejos = leerEnteroEnRango("Cantidad inicial de conejos", MIN_CONEJOS, MAX_CONEJOS);
@@ -68,19 +68,19 @@ public class EcoSim {
             int turnos  = leerEnteroEnRango("Cantidad de turnos totales", MIN_TURNOS, MAX_TURNOS);
 
             System.out.println();
-            System.out.println("--- Resumen de la configuración ---");
+            System.out.println("--- Resumen de la configuracion ---");
             System.out.println("Plantas: " + plantas);
             System.out.println("Conejos: " + conejos);
             System.out.println("Lobos:   " + lobos);
             System.out.println("Clima:   " + Ecosistema.nombreClima(clima));
             System.out.println("Turnos:  " + turnos);
 
-            if (confirmar("¿Confirmar configuración e iniciar?")) {
+            if (confirmar("¿Confirmar configuracion e iniciar?")) {
                 Ecosistema eco = new Ecosistema(clima, turnos);
                 eco.inicializarPoblacion(plantas, conejos, lobos);
                 return eco;
             }
-            System.out.println("Configuración descartada. Ingresá los datos de nuevo.");
+            System.out.println("Configuracion descartada. Ingresa los datos de nuevo.");
         }
     }
 
@@ -98,7 +98,7 @@ public class EcoSim {
             eco.procesarTurno();
 
             if (eco.simulacionTerminada()) {
-                break;   // se cumplieron los turnos o el ecosistema colapsó
+                break;   // se cumplieron los turnos o el ecosistema colapso
             }
 
             esperarEnter(">>> Presione Enter para continuar...");
@@ -110,19 +110,19 @@ public class EcoSim {
     }
 
     // =====================================================================
-    // 3. INTERVENCIÓN (cada 3 turnos)
+    // 3. INTERVENCION (cada 3 turnos)
     // =====================================================================
 
     private static void menuIntervencion(Ecosistema eco) {
         boolean listo = false;
         while (!listo) {
             System.out.println();
-            System.out.println("=== INTERVENCIÓN (cada " + Ecosistema.INTERVALO_INTERVENCION + " turnos) ===");
+            System.out.println("=== INTERVENCION (cada " + Ecosistema.INTERVALO_INTERVENCION + " turnos) ===");
             System.out.println("1. Cambiar clima (actual: " + Ecosistema.nombreClima(eco.getClimaActual()) + ")");
             System.out.println("2. Agregar entidad");
             System.out.println("3. Solo avanzar");
 
-            int opcion = leerEnteroEnRango("Opción", 1, 3);
+            int opcion = leerEnteroEnRango("Opcion", 1, 3);
 
             if (opcion == 1) {
                 listo = intervenirClima(eco);
@@ -134,7 +134,7 @@ public class EcoSim {
         }
     }
 
-    // Devuelve true si se ejecutó el cambio; false si se canceló (vuelve al menú)
+    // Devuelve true si se ejecuto el cambio; false si se cancelo (vuelve al menu)
     private static boolean intervenirClima(Ecosistema eco) {
         Clima nuevo = leerClima("Nuevo clima");
 
@@ -143,18 +143,18 @@ public class EcoSim {
             return false;
         }
         if (!confirmar("¿Cambiar el clima a " + Ecosistema.nombreClima(nuevo) + "?")) {
-            System.out.println("Acción cancelada.");
+            System.out.println("Accion cancelada.");
             return false;
         }
         eco.cambiarClima(nuevo);
         return true;
     }
 
-    // Devuelve true si se agregó la entidad; false si se canceló o no se pudo (vuelve al menú)
+    // Devuelve true si se agrego la entidad; false si se cancelo o no se pudo (vuelve al menu)
     private static boolean intervenirAgregar(Ecosistema eco) {
         String tipo = null;
         while (tipo == null) {
-            System.out.print("¿Qué entidad agregar? (planta/conejo/lobo, o 'volver'): ");
+            System.out.print("¿Que entidad agregar? (planta/conejo/lobo, o 'volver'): ");
             String texto = scanner.nextLine().trim();
 
             if (texto.equalsIgnoreCase("volver")) {
@@ -162,34 +162,34 @@ public class EcoSim {
             }
             tipo = Ecosistema.normalizarTipo(texto);
             if (tipo == null) {
-                System.out.println("Opción inválida. Escriba planta, conejo o lobo.");
+                System.out.println("Opcion invalida. Escriba planta, conejo o lobo.");
             }
         }
 
         if (tipo.equals("lobo") && !eco.puedeAgregarLobo()) {
-            System.out.println("No se pueden agregar más lobos: el máximo es "
-                    + Ecosistema.MAX_LOBOS_TOTALES + " en toda la simulación.");
+            System.out.println("No se pueden agregar mas lobos: el maximo es "
+                    + Ecosistema.MAX_LOBOS_TOTALES + " en toda la simulacion.");
             return false;
         }
 
         if (!confirmar("¿Agregar un/a " + tipo + " al ecosistema?")) {
-            System.out.println("Acción cancelada.");
+            System.out.println("Accion cancelada.");
             return false;
         }
 
-        Entidad nueva = eco.agregarEntidad(tipo);   // energía aleatoria (sobrecarga sin energía)
+        Entidad nueva = eco.agregarEntidad(tipo);   // energia aleatoria (sobrecarga sin energia)
         if (nueva == null) {
             return false;
         }
-        System.out.println("Se agregó '" + nueva.getNombre() + "' al ecosistema.");
+        System.out.println("Se agrego '" + nueva.getNombre() + "' al ecosistema.");
         return true;
     }
 
     // =====================================================================
-    // Utilidades de entrada (Scanner con validación)
+    // Utilidades de entrada (Scanner con validacion)
     // =====================================================================
 
-    /** Pide un entero y repite hasta que sea válido y esté entre min y max. */
+    /** Pide un entero y repite hasta que sea válido y este entre min y max. */
     private static int leerEnteroEnRango(String mensaje, int min, int max) {
         while (true) {
             System.out.print(mensaje + " (" + min + "-" + max + "): ");
@@ -201,7 +201,7 @@ public class EcoSim {
                 }
                 System.out.println("Valor fuera de rango. Debe estar entre " + min + " y " + max + ".");
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Ingrese un número entero.");
+                System.out.println("Entrada invalida. Ingrese un numero entero.");
             }
         }
     }
@@ -221,9 +221,9 @@ public class EcoSim {
         while (true) {
             System.out.print(pregunta + " (s/n): ");
             String r = scanner.nextLine().trim().toLowerCase();
-            if (r.equals("s") || r.equals("si") || r.equals("sí")) return true;
+            if (r.equals("s") || r.equals("si") || r.equals("si")) return true;
             if (r.equals("n") || r.equals("no")) return false;
-            System.out.println("Respuesta inválida. Escriba 's' o 'n'.");
+            System.out.println("Respuesta invalida. Escriba 's' o 'n'.");
         }
     }
 

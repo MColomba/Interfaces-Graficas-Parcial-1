@@ -9,7 +9,7 @@ public class PlantaVenenosa extends Planta implements Peligroso {
     public int serComida() {
         this.setEnergia(0);
         this.setViva(false);
-        return -30; // Devuelve -30 para restar energía al conejo al comerla
+        return -30; // Devuelve -30 para restar energia al conejo al comerla
     }
     
     @Override

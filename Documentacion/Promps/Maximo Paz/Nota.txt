@@ -1,0 +1,24 @@
+Integrante: Maximo Paz   
+
+Trabajo realizado:
+
+- Creación e implementación de la interfaz Reproducible
+- Implementación del método default (intentarReproduccion) en la interfaz Reproducible
+- Definición de la clase Clima mediante un enum con los cuatro estados climáticos
+- Desarrollo de la clase Planta
+- Implementación de la lógica de alimentación de plantas mediante el método serComida()
+- Implementación de la reproducción de las plantas condicionada por su nivel de energía y el multiplicador ambiental del clima actual.
+- Desarrollo del ítem Bonus con la creación de la clase PlantaVenenosa
+- Demostración de polimorfismo al sobrescribir serComida() en PlantaVenenosa
+- Integración y prueba de la interacción del paquete desarrollado con las clases globales del proyecto
+
+Herramienta de IA utilizada:
+Gemini (Google AI)   
+
+Uso de la IA:
+Se utilizó Gemini como herramienta de asistencia y colaboración en vivo para comprender e integrar las consignas específicas del proyecto, depurar advertencias y errores de compilación en Apache NetBeans, y asegurar que la interacción de parámetros (como Ecosistema eco) conectara sin conflictos con los desarrollos del resto del grupo. La implementación del código se realizó de forma progresiva paso a paso, validando la lógica, los modificadores de acceso y la compatibilidad de métodos antes de integrar los cambios al repositorio.   
+
+Entorno de desarrollo: Apache 
+NetBeans IDE 31   
+JDK 25   
+Lenguaje: Java
