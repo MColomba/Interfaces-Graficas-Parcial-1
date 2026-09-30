@@ -1,0 +1,28 @@
+Trabajo realizado:
+- Desarrollo de la clase Ecosistema: manejo de las poblaciones (plantas, conejos, lobos), el clima y el turno actual.
+- Implementación del método procesarTurno(), que ejecuta en orden las 5 fases de cada turno (reproducción, alimentación de conejos, caza de lobos, envejecimiento y verificación de muertes).
+- Desarrollo de la clase EcoSim (clase principal): menú de configuración inicial con validación de rangos y confirmación antes de iniciar.
+- Implementación del loop principal de la simulación (avance turno a turno con Scanner).
+- Desarrollo del sistema de intervención del jugador cada 3 turnos (cambiar clima, agregar entidad o avanzar), incluyendo el tope de 5 lobos en toda la simulación.
+- Implementación de sobrecarga en agregarEntidad(): una versión con energía aleatoria y otra con energía elegida por el jugador.
+- Desarrollo del reporte final: causa de fin, turno de mayor actividad, entidad más longeva de cada tipo, lobo con más cacerías exitosas y totales de nacimientos/muertes.
+- Integración de la clase Estadisticas (desarrollada por Matías) dentro del reporte final.
+- Revisión y ajuste del código propio para que compilara correctamente contra las clases desarrolladas por el resto del equipo (Entidad, Animal, Mortal, Conejo, Lobo).
+- Uso de Git/GitHub para registrar y subir los cambios realizados en una rama propia, e integración mediante Pull Request.
+
+Herramienta de IA utilizada:
+Claude (Anthropic)
+
+Uso de la IA:
+Se utilizó Claude como herramienta de apoyo para el desarrollo de las clases Ecosistema y EcoSim a partir de la consigna del trabajo práctico, para resolver dudas sobre el uso de Git y GitHub en un proyecto grupal (clonado, ramas, commits, push, Pull Request) y para la elaboración del guion del video explicativo. También se lo utilizó para adaptar el código propio una vez integradas las clases desarrolladas por los demás integrantes del equipo, verificando que los tipos, métodos y constructores coincidieran correctamente entre archivos.
+
+Algunos de los pedidos realizados a la IA durante el desarrollo:
+- Solicitud de desarrollo completo de las clases Ecosistema y EcoSim en base a la consigna, dejando en claro qué partes correspondían al resto del equipo.
+- Pedido de revisión del código propio una vez recibidas las clases finales de los compañeros, para detectar y corregir incompatibilidades de tipos, métodos y constructores.
+- Consultas paso a paso sobre el uso de Git y GitHub para un proyecto en equipo (clonado en NetBeans, creación de rama propia, commit selectivo de los archivos propios, resolución de un error de permisos al hacer push, y subida alternativa desde la interfaz web de GitHub).
+- Solicitud de un guion breve (3 minutos) para el video explicativo, incluyendo los conceptos de programación orientada a objetos aplicados en el código propio (polimorfismo, colecciones, sobrecarga, interfaces).
+
+Entorno de desarrollo:
+Apache NetBeans
+JDK 25
+Lenguaje: Java
