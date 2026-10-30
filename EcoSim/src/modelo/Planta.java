@@ -1,4 +1,4 @@
-package ecosim;
+package modelo;
 
 public class Planta extends Entidad implements Reproducible{
     //ATRIBUTOS

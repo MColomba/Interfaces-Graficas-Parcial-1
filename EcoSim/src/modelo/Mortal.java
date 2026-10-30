@@ -1,4 +1,4 @@
-package ecosim;
+package modelo;
 
 public interface Mortal {
     //METODOS

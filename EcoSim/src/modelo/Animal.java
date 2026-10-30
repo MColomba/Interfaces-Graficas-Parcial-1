@@ -1,4 +1,4 @@
-package ecosim;
+package modelo;
 
 public abstract class Animal extends Entidad implements Mortal{
     //ATRIBUTOS

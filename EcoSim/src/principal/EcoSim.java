@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package ecosim;
+package principal;
+
+import modelo.Clima;
+import modelo.Ecosistema;
+import modelo.ResultadoIntervencion;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -177,12 +181,9 @@ public class EcoSim {
             return false;
         }
 
-        Entidad nueva = eco.agregarEntidad(tipo);   // energia aleatoria (sobrecarga sin energia)
-        if (nueva == null) {
-            return false;
-        }
-        System.out.println("Se agrego '" + nueva.getNombre() + "' al ecosistema.");
-        return true;
+        ResultadoIntervencion r = eco.agregarEntidad(tipo);   // energia aleatoria (sobrecarga sin energia)
+        System.out.println(r.getMensaje());
+        return r.isExito();
     }
 
     // =====================================================================

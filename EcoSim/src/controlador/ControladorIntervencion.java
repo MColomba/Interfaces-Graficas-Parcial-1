@@ -2,7 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ecosim;
+package controlador;
+
+import modelo.Clima;
+import modelo.Ecosistema;
+import modelo.ResultadoIntervencion;
+import vista.PanelIntervencion;
 
 import java.text.Normalizer;
  

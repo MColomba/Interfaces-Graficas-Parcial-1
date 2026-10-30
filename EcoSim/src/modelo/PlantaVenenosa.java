@@ -1,4 +1,4 @@
-package ecosim;
+package modelo;
 
 public class PlantaVenenosa extends Planta implements Peligroso {
     public PlantaVenenosa(String nombre, double energia, int edad, boolean viva, int tamanio) {

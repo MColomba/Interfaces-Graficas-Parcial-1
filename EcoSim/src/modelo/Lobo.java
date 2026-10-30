@@ -1,4 +1,4 @@
-package ecosim;
+package modelo;
 
 public class Lobo extends Animal implements Peligroso {
     //ATRIBUTOS
