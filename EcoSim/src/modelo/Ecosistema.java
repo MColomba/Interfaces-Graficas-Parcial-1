@@ -49,6 +49,7 @@ public class Ecosistema {
     // Actividad por turno (para "turno de mayor actividad")
     private ArrayList<Integer> eventosPorTurno;
     private int eventosTurnoActual;
+    private ArrayList<String> eventosActuales;
 
     // Estadisticas en tiempo real (bonus) 
     private Estadisticas estadisticas;
@@ -78,6 +79,7 @@ public class Ecosistema {
         this.historialConejos = new ArrayList<>();
         this.historialLobos = new ArrayList<>();
         this.eventosPorTurno = new ArrayList<>();
+        this.eventosActuales = new ArrayList<>();
         this.estadisticas = new Estadisticas();
         this.random = new Random();
     }
@@ -346,9 +348,16 @@ public class Ecosistema {
 
     /** Muestra un evento del turno y lo suma a la actividad del turno. */
     public void registrarEvento(String descripcion) {
-        if (descripcion == null || descripcion.trim().isEmpty()) return;
-        System.out.println(descripcion);
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            return;
+        }
+
+        eventosActuales.add(descripcion);
         eventosTurnoActual++;
+    }
+    
+    public ArrayList<String> getEventosActuales() {
+        return new ArrayList<>(eventosActuales);
     }
 
     // ===================== Estado y fin de simulacion =====================
@@ -404,6 +413,7 @@ public class Ecosistema {
     public void procesarTurno() {
         turnoActual++;
         eventosTurnoActual = 0;
+        eventosActuales.clear();
 
         System.out.println();
         System.out.println("=== TURNO " + turnoActual + " | Clima: " + nombreClima(climaActual) + " ===");
