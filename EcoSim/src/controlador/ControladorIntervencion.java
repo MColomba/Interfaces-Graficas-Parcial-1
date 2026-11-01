@@ -142,7 +142,7 @@ public class ControladorIntervencion {
     }
  
     // Convierte el texto del combo ("Sequía", "Sequia"...) en un Clima, sin importar tildes
-    private Clima parsearClima(String texto) {
+    static Clima parsearClima(String texto) {
         if (texto == null) {
             return null;
         }

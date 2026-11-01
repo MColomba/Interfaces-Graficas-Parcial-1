@@ -4,6 +4,8 @@
  */
 package vista;
 
+import controlador.ControladorPrincipal;
+
 /**
  *
  * @author matia
@@ -15,6 +17,12 @@ public class PanelConfigIni extends javax.swing.JPanel {
      */
     public PanelConfigIni() {
         initComponents();
+    }
+
+    private ControladorPrincipal controlador;
+
+    public void setControlador(ControladorPrincipal controlador) {
+        this.controlador = controlador;
     }
 
     /**
@@ -37,11 +45,13 @@ public class PanelConfigIni extends javax.swing.JPanel {
         lblCantTurnos = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         lblTitulo.setText("Configuracion Inicial de Partida");
 
         txtCantPlantas.addActionListener(this::txtCantPlantasActionPerformed);
 
-        cmbClima.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soleado", "Lluvioso", "Sequia", "Invierno", " " }));
+        cmbClima.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soleado", "Lluvioso", "Sequia", "Invierno" }));
 
         lblCantPlantas.setText("Cantidad Inicial de Plantas (5-30)");
 
@@ -71,14 +81,13 @@ public class PanelConfigIni extends javax.swing.JPanel {
                             .addComponent(lblClima)
                             .addComponent(lblCantTurnos))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCantConejos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantPlantas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnIniciar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(txtCantTurnos, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCantLobos, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbClima, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtCantTurnos)
+                            .addComponent(txtCantLobos)
+                            .addComponent(cmbClima, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantConejos)
+                            .addComponent(txtCantPlantas)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(lblTitulo)))
@@ -120,66 +129,10 @@ public class PanelConfigIni extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCantPlantasActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        int cantPlantas, cantConejos, cantLobos, clima, cantTurnos;
-        
-        //Plantas
-        if (txtCantPlantas.getText().isEmpty()) {
-            lblTitulo.setText("Cantidad Inicial de Plantas no puede estar vacio");
-        }
-        else{
-            if (Integer.parseInt(txtCantPlantas.getText()) < 5) {
-                
-            }
-            else{
-                cantPlantas = Integer.parseInt(txtCantPlantas.getText());
-            }
-        }
-        
-        //Conejos
-        if (txtCantConejos.getText().isEmpty()) {
-            lblTitulo.setText("Cantidad Inicial de Plantas no puede estar vacio");
-        }
-        else{
-            if (Integer.parseInt(txtCantConejos.getText()) < 5) {
-                
-            }
-            else{
-                cantConejos = Integer.parseInt(txtCantConejos.getText());
-            }
-        }
-        
-        //Lobos
-        if (txtCantLobos.getText().isEmpty()) {
-            lblTitulo.setText("Cantidad Inicial de Plantas no puede estar vacio");
-        }
-        else{
-            if (Integer.parseInt(txtCantLobos.getText()) < 5) {
-                
-            }
-            else{
-                cantLobos = Integer.parseInt(txtCantLobos.getText());
-            }
-        }
-        
-        //Clima
-        clima = cmbClima.getSelectedIndex();
-        
-        //Turnos
-        if (txtCantTurnos.getText().isEmpty()) {
-            lblTitulo.setText("Cantidad Inicial de Plantas no puede estar vacio");
-        }
-        else{
-            if (Integer.parseInt(txtCantTurnos.getText()) < 5) {
-                
-            }
-            else{
-                cantTurnos = Integer.parseInt(txtCantTurnos.getText());
-            }
-        }
-        
-        //Mandar los parametros para crear la simulacion
+        // El controlador valida, crea la simulacion y navega (o muestra el error)
+        controlador.iniciarSimulacion(txtCantPlantas.getText(), txtCantConejos.getText(),
+                txtCantLobos.getText(), (String) cmbClima.getSelectedItem(), txtCantTurnos.getText());
     }//GEN-LAST:event_btnIniciarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;

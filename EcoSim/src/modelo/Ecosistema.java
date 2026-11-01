@@ -16,6 +16,12 @@ public class Ecosistema {
     public static final int MAX_LOBOS_TOTALES = 5;       // tope de lobos en toda la simulacion
     public static final int INTERVALO_INTERVENCION = 3;  // el jugador interviene cada 3 turnos
 
+    // Rangos de la configuracion inicial que pide la consigna
+    public static final int MIN_PLANTAS = 5,  MAX_PLANTAS = 30;
+    public static final int MIN_CONEJOS = 2,  MAX_CONEJOS = 15;
+    public static final int MIN_LOBOS   = 1,  MAX_LOBOS   = 5;
+    public static final int MIN_TURNOS  = 10, MAX_TURNOS  = 50;
+
     private static final String[] NOMBRES_CONEJOS = {
         "Blas", "Luna", "Topo", "Rex", "Nube", "Coco", "Pipo", "Trebol", "Canela", "Bruma"
     };
