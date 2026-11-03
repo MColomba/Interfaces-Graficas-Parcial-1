@@ -80,6 +80,7 @@ public class fraVentanaPrincipal extends javax.swing.JFrame implements VistaPrin
         ((CardLayout) pnlContenido.getLayout()).show(pnlContenido, carta);
         pnlContenido.setPreferredSize(pantalla.getPreferredSize());
         pack();
+        setLocationRelativeTo(null);   // pack() agranda hacia la derecha y abajo: se vuelve a centrar para que no se salga de la pantalla
     }
 
     /**

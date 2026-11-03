@@ -298,7 +298,7 @@ public class PanelSimulacio extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAvanzarTurno)
                     .addComponent(btnNuevaSim))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
