@@ -50,7 +50,7 @@ Las pruebas están en `EcoSim/test` (`controlador` y `modelo`). Son programas co
 
 ## Diseño (Figma)
 
-[Completar con el link al archivo de Figma]
+https://www.figma.com/files/team/1699432198787047201/folder/683414875?fuid=1647083042890684552
 
 Las capturas de las pantallas están en /Documentacion/Prompts. Cada uno de los integrantes tiene una carpeta con sus archivos respectivos.
 
