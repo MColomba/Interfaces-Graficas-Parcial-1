@@ -25,12 +25,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblCantPlantas" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCantConejos" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCantLobos" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblClima" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCantTurnos" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblCantPlantas" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCantConejos" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCantLobos" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClima" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCantTurnos" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnReestablecer" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -71,19 +74,28 @@
                   <Component id="txtCantLobos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCantLobos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cmbClima" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblClima" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cmbClima" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblClima" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtCantTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCantTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnIniciar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnReestablecer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCantTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCantTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnIniciar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,6 +163,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReestablecer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Restablecer Config"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReestablecerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

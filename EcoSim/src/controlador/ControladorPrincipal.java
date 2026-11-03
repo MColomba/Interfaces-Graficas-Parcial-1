@@ -26,14 +26,21 @@ public class ControladorPrincipal {
 
     public Ecosistema getEcosistema() { return configuracion.getEcosistema(); }
 
-    /** Valida la configuración: si es válida va a la simulación; si no, muestra el error. */
+    /**
+     * Valida la configuración: si no es válida muestra el error; si es válida pide confirmar
+     * y, si la persona acepta, crea la simulación y va a esa pantalla.
+     */
     public void iniciarSimulacion(String plantas, String conejos, String lobos, String clima, String turnos) {
-        ResultadoIntervencion r = configuracion.iniciarSimulacion(plantas, conejos, lobos, clima, turnos);
-        if (r.isExito()) {
-            vista.mostrarSimulacion();
-        } else {
-            vista.mostrarMensaje(r.getMensaje());
+        ResultadoIntervencion valida = configuracion.validar(plantas, conejos, lobos, clima, turnos);
+        if (!valida.isExito()) {
+            vista.mostrarMensaje(valida.getMensaje());
+            return;
         }
+        if (!vista.confirmar("¿Iniciar la simulación con " + valida.getMensaje() + "?")) {
+            return;
+        }
+        configuracion.iniciarSimulacion(plantas, conejos, lobos, clima, turnos);
+        vista.mostrarSimulacion();
     }
 
     /** Un turno; si la simulación terminó, deja el reporte cargado y navega a él. */

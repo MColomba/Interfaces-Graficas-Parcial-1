@@ -36,6 +36,11 @@ public class ControladorConfiguracionTest {
         check(falla("5", "2", "1", "Nublado", "10"), "clima invalido");
         check(falla("5", "2", "1", null, "10"), "clima null");
 
+        ResultadoIntervencion previa = cc.validar("15", "5", "1", "Soleado", "30");
+        check(previa.isExito() && previa.getMensaje().equals("15 plantas, 5 conejos, 1 lobos, clima Soleado, 30 turnos")
+                && cc.getEcosistema() == null, "validar da el resumen y no crea la simulacion");
+        check(!cc.validar("4", "5", "1", "Soleado", "30").isExito() && cc.getEcosistema() == null, "validar rechaza datos invalidos");
+
         ResultadoIntervencion ok = cc.iniciarSimulacion(" 5 ", "2", "1", "Sequía", "10");
         check(ok.isExito() && cc.getEcosistema() != null, "datos validos crean la simulacion");
         check(cc.getEcosistema().contarPlantasVivas() == 5 && cc.getEcosistema().contarConejosVivos() == 2

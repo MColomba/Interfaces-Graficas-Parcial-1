@@ -10,12 +10,18 @@ public class ControladorPrincipalTest {
         String pantalla = "";
         String mensaje;
         boolean respuesta = true;
-        int preguntas;
+        int preguntas;    // preguntas de "nueva simulacion" (partida en curso)
+        int inicios;      // preguntas de confirmacion al iniciar
+        String ultimaPregunta;
         public void mostrarConfiguracion() { pantalla = "config"; }
         public void mostrarSimulacion() { pantalla = "simulacion"; }
         public void mostrarReporte() { pantalla = "reporte"; }
         public void mostrarMensaje(String m) { mensaje = m; }
-        public boolean confirmar(String p) { preguntas++; return respuesta; }
+        public boolean confirmar(String p) {
+            ultimaPregunta = p;
+            if (p.startsWith("¿Iniciar")) inicios++; else preguntas++;
+            return respuesta;
+        }
     }
 
     static void check(boolean ok, String que) {
@@ -35,10 +41,11 @@ public class ControladorPrincipalTest {
         check(v.pantalla.isEmpty(), "avanzar sin simulacion no navega ni falla");
 
         cp.iniciarSimulacion("x", "2", "1", "Soleado", "10");
-        check(v.mensaje != null && v.pantalla.isEmpty(), "config invalida: muestra mensaje y no navega");
+        check(v.mensaje != null && v.pantalla.isEmpty() && v.inicios == 0, "config invalida: muestra el error y no pide confirmar");
 
         cp.iniciarSimulacion("5", "2", "1", "Soleado", "10");
-        check(v.pantalla.equals("simulacion"), "config valida: va a simulacion");
+        check(v.pantalla.equals("simulacion") && v.inicios == 1 && v.ultimaPregunta.contains("5 plantas, 2 conejos, 1 lobos"),
+                "config valida: pide confirmar con el resumen y va a simulacion");
         check(api.getTurnoActual() == 0 && api.getCantidadPlantas() == 5 && api.getCantidadConejos() == 2
                 && api.getCantidadLobos() == 1 && api.getClimaActual().equals("SOLEADO")
                 && !api.simulacionTerminada(), "API refleja la simulacion creada");
@@ -74,13 +81,21 @@ public class ControladorPrincipalTest {
         api.avanzarTurno();
         cp.nuevaSimulacion();
         check(v.preguntas == 2 && v.pantalla.equals("config"), "nueva sin partida: no pregunta y avanzar no falla");
+
+        // Si la persona no confirma el inicio, no se crea nada y sigue en la configuracion
+        v.respuesta = false;
+        int iniciosAntes = v.inicios;
+        cp.iniciarSimulacion("6", "3", "2", "Lluvioso", "12");
+        check(v.inicios == iniciosAntes + 1 && v.pantalla.equals("config") && !api.haySimulacion(),
+                "inicio cancelado: sigue en la configuracion y no crea la simulacion");
+        v.respuesta = true;
         cp.iniciarSimulacion("6", "3", "2", "Lluvioso", "12");
         check(api.haySimulacion() && api.getCantidadPlantas() == 6, "despues de descartar se puede iniciar otra");
 
         // Intervencion: solo cada 3 turnos, y avisa a la ventana para que refresque
         int[] avisos = {0};
         ci.setAlIntervenir(() -> avisos[0]++);
-        cp.iniciarSimulacion("30", "2", "1", "Soleado", "50");
+        cp.iniciarSimulacion("30", "5", "1", "Soleado", "50");   // 5 conejos: un lobo no los extingue en 3 turnos
         ci.agregarEntidad("planta");
         check(avisos[0] == 0 && api.getCantidadPlantas() == 30, "turno 0: no se puede intervenir");
         for (int i = 0; i < 3; i++) api.avanzarTurno();

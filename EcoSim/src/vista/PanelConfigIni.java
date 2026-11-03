@@ -44,6 +44,7 @@ public class PanelConfigIni extends javax.swing.JPanel {
         lblClima = new javax.swing.JLabel();
         lblCantTurnos = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
+        btnReestablecer = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -66,6 +67,9 @@ public class PanelConfigIni extends javax.swing.JPanel {
         btnIniciar.setText("Iniciar");
         btnIniciar.addActionListener(this::btnIniciarActionPerformed);
 
+        btnReestablecer.setText("Restablecer Config");
+        btnReestablecer.addActionListener(this::btnReestablecerActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,12 +78,14 @@ public class PanelConfigIni extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblCantPlantas)
-                            .addComponent(lblCantConejos)
-                            .addComponent(lblCantLobos)
-                            .addComponent(lblClima)
-                            .addComponent(lblCantTurnos))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblCantPlantas)
+                                .addComponent(lblCantConejos)
+                                .addComponent(lblCantLobos)
+                                .addComponent(lblClima)
+                                .addComponent(lblCantTurnos))
+                            .addComponent(btnReestablecer))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -110,17 +116,23 @@ public class PanelConfigIni extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantLobos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCantLobos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbClima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblClima))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCantTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCantTurnos))
-                .addGap(18, 18, 18)
-                .addComponent(btnIniciar)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbClima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblClima))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCantTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCantTurnos))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnIniciar)
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReestablecer)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,8 +146,17 @@ public class PanelConfigIni extends javax.swing.JPanel {
                 txtCantLobos.getText(), (String) cmbClima.getSelectedItem(), txtCantTurnos.getText());
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+    private void btnReestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReestablecerActionPerformed
+        txtCantPlantas.setText("");
+        txtCantConejos.setText("");
+        txtCantLobos.setText("");
+        txtCantTurnos.setText("");
+        cmbClima.setSelectedIndex(0);   // vuelve a la primera opción del combo (Soleado)
+    }//GEN-LAST:event_btnReestablecerActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cmbClima;
     private javax.swing.JLabel lblCantConejos;
     private javax.swing.JLabel lblCantLobos;
