@@ -34,10 +34,6 @@ public abstract class Animal extends Entidad implements Mortal{
     //METODOS
     abstract void comer(Ecosistema eco);
 
-    public void moverse(){
-        System.out.println(this.getNombre() + " se movio");
-    }
-    
     @Override
     public boolean estaVivo(){
         return (this.getViva()) && (this.getEnergia() > 0);
@@ -47,6 +43,5 @@ public abstract class Animal extends Entidad implements Mortal{
     public void morir(){
         this.setViva(false);
         this.setEnergia(0);
-        System.out.println(this.getNombre() + " ha muerto");
     }
 }

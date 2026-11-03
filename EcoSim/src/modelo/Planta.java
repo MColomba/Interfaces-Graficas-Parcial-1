@@ -32,10 +32,8 @@ public class Planta extends Entidad implements Reproducible{
     }
     
     @Override
-    public void mostrarEstado(){
-        System.out.println(this.getNombre());
-        System.out.println(this.tamanio);
-        System.out.println(this.getEnergia());
+    public String describirEstado(){
+        return this.getNombre() + " - tamanio: " + this.tamanio + " - energia: " + this.getEnergia();
     }
     
     public int serComida(){

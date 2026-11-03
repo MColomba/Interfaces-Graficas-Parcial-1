@@ -31,10 +31,10 @@ public class Estadisticas {
         historial.add(new RegistroTurno(turno, plantas, conejos, lobos));
     }
     
-    public void mostrarReporteEstadistico() {
+    /** Texto con el maximo y minimo de cada poblacion; quien lo pide decide donde mostrarlo. */
+    public String reporteEstadistico() {
         if (historial.isEmpty()) {
-            System.out.println("No hay datos estadisticos registrados.");
-            return;
+            return "No hay datos estadisticos registrados.";
         }
         
         RegistroTurno maxP = historial.get(0), minP = historial.get(0);
@@ -55,20 +55,14 @@ public class Estadisticas {
             if (r.cantLobos < minL.cantLobos) minL = r;
         }
 
-        System.out.println("\n=======================================================");
-        System.out.println("   BONUS: ESTADÍSTICAS EN TIEMPO REAL (HISTORIAL)      ");
-        System.out.println("=======================================================");
-        System.out.println("PLANTAS:");
-        System.out.println("  * Maximo: " + maxP.cantPlantas + " plantas en el Turno " + maxP.turno);
-        System.out.println("  * Minimo: " + minP.cantPlantas + " plantas en el Turno " + minP.turno);
-
-        System.out.println("\nCONEJOS:");
-        System.out.println("  * Maximo: " + maxC.cantConejos + " conejos en el Turno " + maxC.turno);
-        System.out.println("  * Minimo: " + minC.cantConejos + " conejos en el Turno " + minC.turno);
-
-        System.out.println("\nLOBOS:");
-        System.out.println("  * Maximo: " + maxL.cantLobos + " lobos en el Turno " + maxL.turno);
-        System.out.println("  * Minimo: " + minL.cantLobos + " lobos en el Turno " + minL.turno);
-        System.out.println("=======================================================\n");
+        return "PLANTAS:\n"
+                + "  * Maximo: " + maxP.cantPlantas + " plantas en el Turno " + maxP.turno + "\n"
+                + "  * Minimo: " + minP.cantPlantas + " plantas en el Turno " + minP.turno + "\n\n"
+                + "CONEJOS:\n"
+                + "  * Maximo: " + maxC.cantConejos + " conejos en el Turno " + maxC.turno + "\n"
+                + "  * Minimo: " + minC.cantConejos + " conejos en el Turno " + minC.turno + "\n\n"
+                + "LOBOS:\n"
+                + "  * Maximo: " + maxL.cantLobos + " lobos en el Turno " + maxL.turno + "\n"
+                + "  * Minimo: " + minL.cantLobos + " lobos en el Turno " + minL.turno;
     }
 }

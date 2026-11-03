@@ -29,13 +29,13 @@ public class Conejo extends Animal implements Reproducible{
 
             this.setEnergia(this.getEnergia() + energiaGanada);
 
-            System.out.println(this.getNombre()
+            eco.registrarEvento(this.getNombre()
                     + " comio una planta y gano "
                     + energiaGanada + " de energia.");
         } else {
             this.setEnergia(this.getEnergia() - 15);
 
-            System.out.println(this.getNombre()
+            eco.registrarEvento(this.getNombre()
                     + " no encontro plantas y perdio 15 de energia.");
         }
     }
@@ -47,12 +47,12 @@ public class Conejo extends Animal implements Reproducible{
     }
     
     @Override
-    public void mostrarEstado(){
-        System.out.println(this.getNombre());
-        System.out.println(this.getEnergia());
+    public String describirEstado(){
+        String estado = this.getNombre() + " - energia: " + this.getEnergia();
         if (this.getEnergia() < 20){
-            System.out.println("Peligro!!");
+            estado += " (peligro)";
         }
+        return estado;
     }
     @Override
     public void reproducirse(Ecosistema eco) {
@@ -74,7 +74,7 @@ public class Conejo extends Animal implements Reproducible{
             return;
         }
         Conejo nuevoConejo = new Conejo(
-            "Conejo nuevo",
+            eco.generarNombre("conejo"),
             50,
             0,
             true,
@@ -82,10 +82,8 @@ public class Conejo extends Animal implements Reproducible{
             this.getPeso()
     );
 
-    eco.getConejos().add(nuevoConejo);
-
-    System.out.println(this.getNombre()
-            + " se reprodujo y nacio un nuevo conejo.");
+    eco.agregarConejo(nuevoConejo);   // cuenta como nacimiento y entra al historial
+    eco.registrarEvento(this.getNombre() + " se reprodujo -> " + nuevoConejo.getNombre());
         }
     @Override
     public boolean puedeReproducirse() {

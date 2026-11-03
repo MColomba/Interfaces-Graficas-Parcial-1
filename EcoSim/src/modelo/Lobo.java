@@ -41,7 +41,7 @@ public class Lobo extends Animal implements Peligroso {
         }
 
         if (conejosVivos.isEmpty()) {
-            System.out.println(this.getNombre()
+            eco.registrarEvento(this.getNombre()
                     + " no encontro conejos vivos para cazar.");
             return;
         }
@@ -65,19 +65,18 @@ public class Lobo extends Animal implements Peligroso {
             this.setEnergia(this.getEnergia() + 30);
             this.exitosCaza++;
 
-            System.out.println(this.getNombre()
+            eco.registrarEvento(this.getNombre()
                     + " cazo a " + presa.getNombre()
                     + " y gano 30 de energia.");
         } else {
-            System.out.println(this.getNombre()
+            eco.registrarEvento(this.getNombre()
                     + " intento cazar a " + presa.getNombre()
                     + " pero fallo.");
         }
     }
     @Override
-    public void mostrarEstado() {
-        System.out.println("Lobo: " + this.getNombre());
-        System.out.println("Energia: " + this.getEnergia());
-        System.out.println("Cazas exitosas: " + this.getExitosCaza());
+    public String describirEstado() {
+        return "Lobo: " + this.getNombre() + " - energia: " + this.getEnergia()
+                + " - cazas exitosas: " + this.getExitosCaza();
     }
 }

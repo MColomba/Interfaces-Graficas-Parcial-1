@@ -24,6 +24,13 @@ public class ControladorConfiguracion {
     /** La simulación creada por la última configuración válida (null si todavía no hay). */
     public Ecosistema getEcosistema() { return ecosistema; }
 
+    /** Descarta la simulación actual y deja a los controladores sin datos. */
+    public void reiniciar() {
+        ecosistema = null;
+        intervencion.setEcosistema(null);
+        reporte.setEcosistema(null);
+    }
+
     /** Valida; si todo está bien crea la simulación y la reparte a los controladores. */
     public ResultadoIntervencion iniciarSimulacion(String plantas, String conejos, String lobos,
                                                    String clima, String turnos) {

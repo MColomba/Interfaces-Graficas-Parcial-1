@@ -11,4 +11,7 @@ public interface VistaPrincipal {
 
     /** Mensaje de error o aviso para la persona. */
     void mostrarMensaje(String mensaje);
+
+    /** Pregunta de sí/no; true si la persona confirma. */
+    boolean confirmar(String pregunta);
 }

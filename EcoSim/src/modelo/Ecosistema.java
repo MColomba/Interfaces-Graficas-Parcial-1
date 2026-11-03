@@ -374,8 +374,8 @@ public class Ecosistema {
                 + "  Lobos: " + contarLobosVivos();
     }
 
-    public void mostrarEstado() {
-        System.out.println("Estado: " + lineaConteo() + "  | Clima: " + nombreClima(climaActual));
+    public String describirEstado() {
+        return "Estado: " + lineaConteo() + "  | Clima: " + nombreClima(climaActual);
     }
 
     /** true si alguna de las tres poblaciones llego a 0. */
@@ -413,18 +413,12 @@ public class Ecosistema {
      *  3. Lobos cazan
      *  4. Todos envejecen / gastan energia base (+ efecto del clima)
      *  5. Se verifican las muertes
-     *  6. Se muestran los eventos (a medida que ocurren, bajo "-- Eventos --")
-     *  7. Se muestra el estado
+     * Los eventos del turno quedan en getEventosActuales() para que otra capa los muestre.
      */
     public void procesarTurno() {
         turnoActual++;
         eventosTurnoActual = 0;
         eventosActuales.clear();
-
-        System.out.println();
-        System.out.println("=== TURNO " + turnoActual + " | Clima: " + nombreClima(climaActual) + " ===");
-        System.out.println(lineaConteo());
-        System.out.println("-- Eventos --");
 
         faseReproduccion();      // 1
         faseConejosComen();      // 2
@@ -432,15 +426,9 @@ public class Ecosistema {
         faseEnvejecimiento();    // 4
         faseMuertes();           // 5
 
-        if (eventosTurnoActual == 0) {
-            System.out.println("(sin eventos)");
-        }
-
         // Guardar datos del turno para el reporte
         eventosPorTurno.add(eventosTurnoActual);
         estadisticas.registrarTurno(turnoActual, contarPlantasVivas(), contarConejosVivos(), contarLobosVivos());
-
-        mostrarEstado();         // 7
     }
 
     // 1. POLIMORFISMO: plantas y conejos se procesan en el mismo recorrido
@@ -497,11 +485,17 @@ public class Ecosistema {
         for (Conejo c : conejos) {
             if (c.getViva()) {
                 c.verificarMuerte();
+                if (!c.getViva()) {
+                    registrarEvento("Conejo '" + c.getNombre() + "' murio (sin energia)");
+                }
             }
         }
         for (Lobo l : lobos) {
             if (l.getViva()) {
                 l.verificarMuerte();
+                if (!l.getViva()) {
+                    registrarEvento("Lobo '" + l.getNombre() + "' murio (sin energia)");
+                }
             }
         }
 
@@ -515,12 +509,9 @@ public class Ecosistema {
 
         muertesPlantas += retirarMuertas(plantas);
 
-        int conejosMuertos = retirarMuertas(conejos);
-        int lobosMuertos = retirarMuertas(lobos);
-        muertesConejos += conejosMuertos;
-        muertesLobos += lobosMuertos;
-        // Las muertes de animales las imprime verificarMuerte(); aca solo suman actividad
-        eventosTurnoActual += conejosMuertos + lobosMuertos;
+        // La actividad ya la cuentan los eventos: "cazo a ..." (presa muerta) y "murio (sin energia)"
+        muertesConejos += retirarMuertas(conejos);
+        muertesLobos += retirarMuertas(lobos);
     }
 
     // Saca de la lista las entidades que ya no estan vivas y devuelve cuantas saco

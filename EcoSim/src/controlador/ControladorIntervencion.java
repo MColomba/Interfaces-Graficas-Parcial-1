@@ -26,11 +26,16 @@ import java.text.Normalizer;
 public class ControladorIntervencion {
     private Ecosistema ecosistema;
     private final PanelIntervencion panel;
+    private Runnable alIntervenir;   // la ventana refresca la simulación cuando cambia por una intervención
  
     // Turno en el que el jugador ya usó su intervención (-1 = todavía ninguna).
     // Sirve para permitir UNA sola acción por cada ventana de intervención.
     private int turnoIntervenido = -1;
  
+    public void setAlIntervenir(Runnable accion) {
+        this.alIntervenir = accion;
+    }
+
     public ControladorIntervencion(PanelIntervencion panel) {
         this.panel = panel;
         this.panel.setControlador(this);
@@ -121,6 +126,9 @@ public class ControladorIntervencion {
         if (r.isExito()) {
             turnoIntervenido = ecosistema.getTurnoActual();
             actualizarPanel();
+            if (alIntervenir != null) {
+                alIntervenir.run();
+            }
         }
         panel.mostrarMensaje(r.getMensaje());
     }

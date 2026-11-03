@@ -9,10 +9,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import vista.PanelConfigIni;
-import vista.PanelIntervencion;
 import vista.PanelReporte;
-import vista.VentanaPrincipal;
-import vista.VistaSimulacion;
+import vista.fraVentanaPrincipal;
+import vista.PanelSimulacio;
 
 /**
  * EcoSim: clase principal (Main) del Simulador de Ecosistema.
@@ -30,19 +29,20 @@ public class EcoSim {
                 // si falla se queda con el estilo por defecto
             }
 
-            // Vistas
-            PanelConfigIni configuracion = new PanelConfigIni();
-            VistaSimulacion simulacion = new VistaSimulacion();
-            PanelReporte reporte = new PanelReporte();
-            VentanaPrincipal ventana = new VentanaPrincipal(configuracion, simulacion, reporte);
+            // Vista: la ventana trae sus tres pantallas armadas desde el diseñador
+            fraVentanaPrincipal ventana = new fraVentanaPrincipal();
+            PanelConfigIni configuracion = ventana.getPanelConfig();
+            PanelSimulacio simulacion = ventana.getPanelSimulacion();
+            PanelReporte reporte = ventana.getPanelReporte();
 
             // Controladores
-            ControladorIntervencion ctrlIntervencion = new ControladorIntervencion(new PanelIntervencion());
+            ControladorIntervencion ctrlIntervencion = new ControladorIntervencion(simulacion.getPanelIntervencion());
             ControladorReporte ctrlReporte = new ControladorReporte(reporte);
             ControladorConfiguracion ctrlConfiguracion = new ControladorConfiguracion(ctrlIntervencion, ctrlReporte);
             ControladorPrincipal ctrlPrincipal =
                     new ControladorPrincipal(ventana, ctrlConfiguracion, ctrlIntervencion, ctrlReporte);
 
+            ctrlIntervencion.setAlIntervenir(ventana::actualizarSimulacion);
             configuracion.setControlador(ctrlPrincipal);
             ventana.setControladorSimulacion(new ControladorSimulacionAPI(ctrlPrincipal));
             ventana.setVisible(true);

@@ -49,8 +49,19 @@ public class ControladorPrincipal {
         }
     }
 
-    /** Vuelve a la pantalla de configuración. */
+    /** Hay una simulación empezada que todavía no terminó. */
+    public boolean hayPartidaEnCurso() {
+        Ecosistema eco = getEcosistema();
+        return eco != null && !eco.simulacionTerminada();
+    }
+
+    /** Vuelve a la configuración; si hay una partida en curso pide confirmar antes de descartarla. */
     public void nuevaSimulacion() {
+        if (hayPartidaEnCurso()
+                && !vista.confirmar("Hay una simulación en curso. Si empezás una nueva se pierde. ¿Continuar?")) {
+            return;
+        }
+        configuracion.reiniciar();
         vista.mostrarConfiguracion();
     }
 }

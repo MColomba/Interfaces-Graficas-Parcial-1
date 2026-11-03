@@ -72,7 +72,7 @@ public abstract class Entidad {
     
     //METODOS
     public abstract void actuar(Ecosistema eco);
-    public abstract void mostrarEstado();
+    public abstract String describirEstado();   // texto del estado; quien lo pide decide dónde mostrarlo
     
     public void envejecer(){
         this.edad += 1;
