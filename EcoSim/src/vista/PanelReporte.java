@@ -58,7 +58,8 @@ public class PanelReporte extends javax.swing.JPanel {
         lblMensaje = new javax.swing.JLabel();
         btnNuevaSimulacion = new javax.swing.JButton();
 
-        lblTitulo.setText("Reporte final");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setText("REPORTE FINAL");
 
         tblReport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,6 +79,8 @@ public class PanelReporte extends javax.swing.JPanel {
         });
         tblReporte.setViewportView(tblReport);
 
+        btnNuevaSimulacion.setBackground(new java.awt.Color(204, 255, 204));
+        btnNuevaSimulacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnNuevaSimulacion.setText("Nueva simulacion");
         btnNuevaSimulacion.addActionListener(this::btnNuevaSimulacionActionPerformed);
 
@@ -113,7 +116,7 @@ public class PanelReporte extends javax.swing.JPanel {
                 .addComponent(lblMensaje)
                 .addGap(32, 32, 32)
                 .addComponent(btnNuevaSimulacion)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

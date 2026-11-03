@@ -58,66 +58,111 @@ public class PanelIntervencion extends javax.swing.JPanel {
         btnAgregarEntidad = new javax.swing.JButton();
         btnContinuar = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        lblEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblEstado.setText("Podes intervenir");
         lblEstado.setToolTipText("");
 
+        lblClimaActual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblClimaActual.setText("Clima actual ");
 
         cmbClima.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soleado", "Lluvioso", "Sequia", "Invierno" }));
 
+        btnCambiarClima.setBackground(new java.awt.Color(204, 255, 204));
+        btnCambiarClima.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCambiarClima.setMnemonic('c');
         btnCambiarClima.setText("Cambiar clima");
         btnCambiarClima.addActionListener(this::btnCambiarClimaActionPerformed);
 
         cmbEntidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planta", "Conejo", "Lobo" }));
 
+        btnAgregarEntidad.setBackground(new java.awt.Color(204, 255, 204));
+        btnAgregarEntidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAgregarEntidad.setMnemonic('a');
         btnAgregarEntidad.setText("Agregar entidad");
         btnAgregarEntidad.addActionListener(this::btnAgregarEntidadActionPerformed);
 
+        btnContinuar.setBackground(new java.awt.Color(204, 204, 204));
+        btnContinuar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnContinuar.setMnemonic('n');
         btnContinuar.setText("Continuar sin intervenir");
         btnContinuar.addActionListener(this::btnContinuarActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("INTERVENCION");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Clima");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Entidad");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMensaje)
-                    .addComponent(lblClimaActual)
-                    .addComponent(lblEstado)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbClima, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbEntidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCambiarClima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregarEntidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnContinuar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMensaje)
+                                    .addComponent(lblEstado)
+                                    .addComponent(lblClimaActual))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 34, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbClima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCambiarClima, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnContinuar)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(cmbEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnAgregarEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel1)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
                 .addComponent(lblEstado)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblClimaActual)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbClima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCambiarClima))
+                    .addComponent(btnCambiarClima)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarEntidad))
-                .addGap(18, 18, 18)
+                    .addComponent(btnAgregarEntidad)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
                 .addComponent(btnContinuar)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addComponent(lblMensaje)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,6 +188,9 @@ public class PanelIntervencion extends javax.swing.JPanel {
     private javax.swing.JButton btnContinuar;
     private javax.swing.JComboBox<String> cmbClima;
     private javax.swing.JComboBox<String> cmbEntidad;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblClimaActual;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblMensaje;
