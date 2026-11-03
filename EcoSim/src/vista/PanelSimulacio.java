@@ -21,6 +21,7 @@ public class PanelSimulacio extends javax.swing.JPanel {
     public PanelSimulacio() {
         initComponents();
     }
+    
 
     private ControladorSimulacionAPI controlador;
 
@@ -113,6 +114,8 @@ public class PanelSimulacio extends javax.swing.JPanel {
         btnAvanzarTurno = new javax.swing.JButton();
         btnNuevaSim = new javax.swing.JButton();
         panelIntervencion1 = new vista.PanelIntervencion();
+        btnGuardarPartida = new javax.swing.JButton();
+        btnCargarPartida = new javax.swing.JButton();
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setText("SIMULADOR DE ECOSISTEMA");
@@ -181,6 +184,16 @@ public class PanelSimulacio extends javax.swing.JPanel {
         btnNuevaSim.setText("Nueva Simulacion");
         btnNuevaSim.addActionListener(this::btnNuevaSimActionPerformed);
 
+        btnGuardarPartida.setBackground(new java.awt.Color(204, 255, 204));
+        btnGuardarPartida.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardarPartida.setText("Guardar Partida");
+        btnGuardarPartida.addActionListener(this::btnGuardarPartidaActionPerformed);
+
+        btnCargarPartida.setBackground(new java.awt.Color(204, 255, 204));
+        btnCargarPartida.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCargarPartida.setText("Cargar Partida");
+        btnCargarPartida.addActionListener(this::btnCargarPartidaActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,7 +245,13 @@ public class PanelSimulacio extends javax.swing.JPanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(231, 231, 231)
                                                 .addComponent(jLabel3)))))))))
-                .addComponent(panelIntervencion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelIntervencion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(btnGuardarPartida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCargarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,7 +283,12 @@ public class PanelSimulacio extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelIntervencion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelIntervencion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardarPartida)
+                            .addComponent(btnCargarPartida))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -302,8 +326,24 @@ public class PanelSimulacio extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnNuevaSimActionPerformed
 
+    private void btnGuardarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPartidaActionPerformed
+        // TODO add your handling code here:
+        if (controlador != null) {
+        controlador.guardarSimulacion();
+        }
+    }//GEN-LAST:event_btnGuardarPartidaActionPerformed
+
+    private void btnCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPartidaActionPerformed
+        // TODO add your handling code here:
+        if (controlador != null) {
+        controlador.cargarSimulacion();
+        }
+    }//GEN-LAST:event_btnCargarPartidaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanzarTurno;
+    private javax.swing.JButton btnCargarPartida;
+    private javax.swing.JButton btnGuardarPartida;
     private javax.swing.JButton btnNuevaSim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

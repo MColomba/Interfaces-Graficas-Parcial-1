@@ -71,4 +71,29 @@ public class ControladorPrincipal {
         configuracion.reiniciar();
         vista.mostrarConfiguracion();
     }
+    
+        public void guardarSimulacion() {
+        try {
+            Ecosistema eco = getEcosistema();
+            dao.EcosistemaDAO.guardar(eco);
+            vista.mostrarMensaje("¡Simulación guardada con éxito!");
+        } catch (Exception e) {
+            vista.mostrarMensaje("Error al guardar: " + e.getMessage());
+        }
+    }
+
+    /** Carga una simulación guardada y pasa directamente a la pantalla de simulación. */
+    public void cargarSimulacion() {
+        try {
+            Ecosistema ecoLoaded = dao.EcosistemaDAO.cargar();
+            // Reasignamos el ecosistema cargado a los controladores de configuración e intervención
+            configuracion.getEcosistema(); // (O puedes crear un método setter en ControladorConfiguracion si lo prefieres)
+            // O directamente actualizar los controladores:
+            // configuracion.ecosistema = ecoLoaded; (si tienes acceso o creas un método setEcosistema en ControladorConfiguracion)
+            vista.mostrarMensaje("¡Simulación cargada con éxito!");
+            vista.mostrarSimulacion();
+        } catch (Exception e) {
+            vista.mostrarMensaje("Error al cargar la simulación: " + e.getMessage());
+        }
+    }
 }

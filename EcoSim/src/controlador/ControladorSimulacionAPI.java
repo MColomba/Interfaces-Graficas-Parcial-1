@@ -55,4 +55,12 @@ public class ControladorSimulacionAPI {
     }
 
     private Ecosistema eco() { return principal.getEcosistema(); }
+    
+    public void guardarSimulacion() {
+    principal.guardarSimulacion();
+    }
+
+    public void cargarSimulacion() {
+    principal.cargarSimulacion();
+    }   
 }
