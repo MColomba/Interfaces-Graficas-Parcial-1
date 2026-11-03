@@ -72,28 +72,33 @@ public class ControladorPrincipal {
         vista.mostrarConfiguracion();
     }
     
-        public void guardarSimulacion() {
+    public void guardarSimulacion() {
         try {
-            Ecosistema eco = getEcosistema();
-            dao.EcosistemaDAO.guardar(eco);
+            dao.EcosistemaDAO.guardar(getEcosistema());
             vista.mostrarMensaje("¡Simulación guardada con éxito!");
         } catch (Exception e) {
             vista.mostrarMensaje("Error al guardar: " + e.getMessage());
         }
     }
 
-    /** Carga una simulación guardada y pasa directamente a la pantalla de simulación. */
+    /**
+     * Carga la simulación guardada, reemplaza la actual y va a la pantalla de simulación.
+     * Si hay una partida en curso pide confirmar antes de descartarla; si el archivo falla, la partida sigue intacta.
+     */
     public void cargarSimulacion() {
+        Ecosistema cargado;
         try {
-            Ecosistema ecoLoaded = dao.EcosistemaDAO.cargar();
-            // Reasignamos el ecosistema cargado a los controladores de configuración e intervención
-            configuracion.getEcosistema(); // (O puedes crear un método setter en ControladorConfiguracion si lo prefieres)
-            // O directamente actualizar los controladores:
-            // configuracion.ecosistema = ecoLoaded; (si tienes acceso o creas un método setEcosistema en ControladorConfiguracion)
-            vista.mostrarMensaje("¡Simulación cargada con éxito!");
-            vista.mostrarSimulacion();
+            cargado = dao.EcosistemaDAO.cargar();
         } catch (Exception e) {
             vista.mostrarMensaje("Error al cargar la simulación: " + e.getMessage());
+            return;
         }
+        if (hayPartidaEnCurso()
+                && !vista.confirmar("Hay una simulación en curso. Si cargás la guardada se pierde. ¿Continuar?")) {
+            return;
+        }
+        configuracion.setEcosistema(cargado);
+        vista.mostrarSimulacion();
+        vista.mostrarMensaje("¡Simulación cargada con éxito!");
     }
 }

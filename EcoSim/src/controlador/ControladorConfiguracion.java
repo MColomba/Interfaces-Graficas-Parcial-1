@@ -24,11 +24,16 @@ public class ControladorConfiguracion {
     /** La simulación creada por la última configuración válida (null si todavía no hay). */
     public Ecosistema getEcosistema() { return ecosistema; }
 
+    /** Instala una simulación (nueva o cargada) y se la reparte a los demás controladores. */
+    public void setEcosistema(Ecosistema ecosistema) {
+        this.ecosistema = ecosistema;
+        intervencion.setEcosistema(ecosistema);
+        reporte.setEcosistema(ecosistema);
+    }
+
     /** Descarta la simulación actual y deja a los controladores sin datos. */
     public void reiniciar() {
-        ecosistema = null;
-        intervencion.setEcosistema(null);
-        reporte.setEcosistema(null);
+        setEcosistema(null);
     }
 
     /** Los datos de la configuración ya validados. */
@@ -59,10 +64,9 @@ public class ControladorConfiguracion {
             return new ResultadoIntervencion(false, e.getMessage());
         }
 
-        ecosistema = new Ecosistema(cfg.clima(), cfg.turnos());
-        ecosistema.inicializarPoblacion(cfg.plantas(), cfg.conejos(), cfg.lobos());
-        intervencion.setEcosistema(ecosistema);
-        reporte.setEcosistema(ecosistema);
+        Ecosistema nuevo = new Ecosistema(cfg.clima(), cfg.turnos());
+        nuevo.inicializarPoblacion(cfg.plantas(), cfg.conejos(), cfg.lobos());
+        setEcosistema(nuevo);
         return new ResultadoIntervencion(true, "Simulación creada: " + cfg.resumen() + ".");
     }
 

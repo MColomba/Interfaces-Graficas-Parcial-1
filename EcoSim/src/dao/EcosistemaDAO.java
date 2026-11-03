@@ -31,18 +31,19 @@ public class EcosistemaDAO {
             escritor.println("TURNO=" + ecosistema.getTurnoActual());
             escritor.println("TURNOS_TOTALES=" + ecosistema.getTurnosTotales());
 
-            // Guardar Plantas Vivas (Formato: PLANTA=Nombre,Energia,Edad,Viva,Tamanio)
-            for (Planta p : ecosistema.getPlantasVivas()) {
+            // Se guarda el historial completo (vivas y muertas) para que el reporte final y el tope de lobos sigan bien al cargar.
+            // Guardar Plantas (Formato: PLANTA=Nombre,Energia,Edad,Viva,Tamanio)
+            for (Planta p : ecosistema.getHistorialPlantas()) {
                 escritor.println("PLANTA=" + p.getNombre() + "," + p.getEnergia() + "," + p.getEdad() + "," + p.getViva() + "," + p.getTamanio());
             }
 
             // Guardar Conejos Vivos (Formato: CONEJO=Nombre,Energia,Edad,Viva,Velocidad,Peso)
-            for (Conejo c : ecosistema.getConejosVivos()) {
+            for (Conejo c : ecosistema.getHistorialConejos()) {
                 escritor.println("CONEJO=" + c.getNombre() + "," + c.getEnergia() + "," + c.getEdad() + "," + c.getViva() + "," + c.getVelocidad() + "," + c.getPeso());
             }
 
             // Guardar Lobos Vivos (Formato: LOBO=Nombre,Energia,Edad,Viva,Velocidad,Peso,ExitosCaza)
-            for (Lobo l : ecosistema.getLobosVivos()) {
+            for (Lobo l : ecosistema.getHistorialLobos()) {
                 escritor.println("LOBO=" + l.getNombre() + "," + l.getEnergia() + "," + l.getEdad() + "," + l.getViva() + "," + l.getVelocidad() + "," + l.getPeso() + "," + l.getExitosCaza());
             }
         }
@@ -88,6 +89,7 @@ public class EcosistemaDAO {
                 String valor = partes[1].trim();
 
                 // Analizar según el tipo de dato almacenado
+                try {   // NumberFormatException y Clima.valueOf lanzan IllegalArgumentException
                 switch (clave) {
                     case "CLIMA":
                         clima = Clima.valueOf(valor); // Convierte texto a enum Clima
@@ -117,6 +119,9 @@ public class EcosistemaDAO {
                     default:
                         throw new IOException("Clave desconocida '" + clave + "' en la línea " + numeroLinea);
                 }
+                } catch (IllegalArgumentException e) {
+                    throw new IOException("Valor inválido en la línea " + numeroLinea + ".");
+                }
             }
         }
 
@@ -125,9 +130,9 @@ public class EcosistemaDAO {
         ecosistema.setTurnoActual(turno);
 
         // Añadir las entidades recuperadas a las listas del ecosistema
-        for (Planta p : plantasCargadas) ecosistema.getPlantas().add(p);
-        for (Conejo c : conejosCargados) ecosistema.getConejos().add(c);
-        for (Lobo l : lobosCargados) ecosistema.getLobos().add(l);
+        for (Planta p : plantasCargadas) ecosistema.restaurarPlanta(p);
+        for (Conejo c : conejosCargados) ecosistema.restaurarConejo(c);
+        for (Lobo l : lobosCargados) ecosistema.restaurarLobo(l);
 
         return ecosistema;
     }

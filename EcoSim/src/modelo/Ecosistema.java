@@ -268,6 +268,21 @@ public class Ecosistema {
     private void registrarConejo(Conejo c) { conejos.add(c); historialConejos.add(c); }
     private void registrarLobo(Lobo l) { lobos.add(l); historialLobos.add(l); }
 
+    // ===================== Guardado / carga (lo usa el DAO) =====================
+
+    /** Todas las entidades que existieron en la simulacion, vivas y muertas (lo que hay que guardar). */
+    public ArrayList<Planta> getHistorialPlantas() { return new ArrayList<>(historialPlantas); }
+    public ArrayList<Conejo> getHistorialConejos() { return new ArrayList<>(historialConejos); }
+    public ArrayList<Lobo> getHistorialLobos() { return new ArrayList<>(historialLobos); }
+
+    /**
+     * Reincorpora una entidad leida de un guardado: va al historial siempre y a la lista viva solo si
+     * esta viva. Cada entidad creada incrementa el contador de nombres, asi que se mantiene en sync.
+     */
+    public void restaurarPlanta(Planta p) { historialPlantas.add(p); if (p.getViva()) plantas.add(p); contadorPlantas++; }
+    public void restaurarConejo(Conejo c) { historialConejos.add(c); if (c.getViva()) conejos.add(c); contadorConejos++; }
+    public void restaurarLobo(Lobo l) { historialLobos.add(l); if (l.getViva()) lobos.add(l); contadorLobos++; }
+
     /** Crea la poblacion inicial (energia aleatoria en rangos razonables). No cuenta como "agregado por el jugador". */
     public void inicializarPoblacion(int cantPlantas, int cantConejos, int cantLobos) {
         if (cantPlantas < 0 || cantConejos < 0 || cantLobos < 0) {
