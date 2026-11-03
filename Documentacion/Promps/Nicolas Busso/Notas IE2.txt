@@ -1,0 +1,28 @@
+SEGUNDA INSTANCIA EVALUATIVA - INTERFAZ GRAFICA
+Proyecto: EcoSim - Simulador de Ecosistema (Java Swing)
+Integrante: Nicolas Busso (Nico)
+
+PARTE DESARROLLADA
+Simulacion y visualizacion grafica:
+- Adaptacion del procesamiento de turnos para registrar eventos sin depender de la consola.
+- Desarrollo de VistaSimulacion en Java Swing mediante el disenador visual de NetBeans.
+- Visualizacion del turno actual, clima y cantidades de plantas, conejos y lobos.
+- Tabla de entidades vivas con ID, tipo, edad y energia.
+- Listado de eventos del turno (alimentacion, cacerias, nacimientos y muertes).
+- Boton para avanzar turnos y actualizar los datos mostrados.
+- Pruebas locales de funcionamiento de la simulacion y de la interfaz.
+
+DISENO EN FIGMA
+Disene dos estados de la vista de simulacion: pantalla inicial y pantalla con un turno avanzado. Incluyen indicadores del ecosistema, tabla de entidades, eventos y boton Avanzar turno.
+El diseno grupal completo y su integracion con otras pantallas se coordinan con los demas integrantes.
+
+USO DE INTELIGENCIA ARTIFICIAL
+Utilice ChatGPT como herramienta de consulta y apoyo para analizar la consigna, comprender y revisar el procesamiento de turnos, la comunicacion entre modelo, controlador y vista (MVC), la actualizacion de componentes Swing, la verificacion de errores y la planificacion de pruebas. Las consultas y respuestas deben documentarse con capturas o mediante el enlace a la conversacion completa, segun la consigna.
+
+Enlace al archivo de Figma:https://www.figma.com/design/ccZkyOmRHTF82frx6VeHCU/Sin-t%C3%ADtulo?node-id=0-1&t=YA6NuPsTaXTTo80U-1
+
+ENTORNO DE DESARROLLO
+IDE: Apache NetBeans (version: 28)
+JDK: java 25
+Tecnologias utilizadas: Java, Swing, colecciones de java.util.
+
