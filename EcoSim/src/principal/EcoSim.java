@@ -22,9 +22,15 @@ public class EcoSim {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // Mismo estilo que el diseñador de NetBeans (si no, Java usa "Metal" y cambian fuentes y tamaños)
+            // Estilo "Metal" con la fuente Segoe UI: el estilo de Windows ignora el color de fondo de los botones
             try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                UIManager.put("Button.margin", new java.awt.Insets(2, 6, 2, 6));   // Metal trae 14 px por lado y corta los textos
+                for (Object clave : java.util.Collections.list(UIManager.getDefaults().keys())) {
+                    if (clave instanceof String && ((String) clave).endsWith(".font")) {
+                        UIManager.put(clave, new javax.swing.plaf.FontUIResource("Segoe UI", java.awt.Font.PLAIN, 12));
+                    }
+                }
             } catch (ReflectiveOperationException | UnsupportedLookAndFeelException e) {
                 // si falla se queda con el estilo por defecto
             }
