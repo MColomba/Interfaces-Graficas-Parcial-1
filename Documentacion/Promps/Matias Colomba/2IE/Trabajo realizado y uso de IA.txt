@@ -1,0 +1,21 @@
+Integrante: Colomba Matías Gabriel
+
+Trabajo realizado:
+
+1. Organizar la estructura MVC del proyecto, separando los paquetes "modelo", "vista", "controlador" y "dao", respetando las responsabilidades de cada capa.
+2. Implementar la pantalla de configuración inicial utilizando Swing y el diseñador visual de NetBeans.
+3. Programar las validaciones de los datos ingresados: cantidades de plantas, conejos, lobos, clima y cantidad de turnos.
+4. Desarrollar el controlador encargado de iniciar una simulación y coordinar las acciones de configuración.
+5. Implementar la navegación entre las pantallas de configuración, simulación y reporte.
+6. Desarrollar la funcionalidad para comenzar una nueva simulación, incluyendo la confirmación cuando exista una partida en curso.
+7. Implementar los mensajes de error, confirmación y estados sin datos en las pantallas correspondientes.
+8. Realizar pruebas de configuración, validaciones, navegación y creación de nuevas simulaciones.
+
+Herramienta de IA utilizada:
+Claude Code
+
+Se utilizó Claude (Claude Code) como herramienta de asistencia en el desarrollo para organizar el proyecto en la arquitectura MVC (paquetes modelo, vista, controlador y principal), correcciones en los controladores de configuración y de navegación, y asegurar que el controlador no contuviera código de Swing, usando una interfaz (VistaPrincipal) para que pida mensajes y confirmaciones a la vista. También se usó para escribir las validaciones de la configuración inicial, los mensajes de confirmación al iniciar una simulación y al comenzar una nueva, y para quitar las salidas por consola del modelo. Se le consultaron problemas visuales de la aplicación, como la posición de la ventana al cambiar de pantalla y los colores de los botones. Las pantallas se armaron con el diseñador de NetBeans, y la IA no creó componentes por código. Las pruebas escritas con la IA son programas con main, sin JUnit, y se ejecutaron junto con la aplicación real antes de subir cambios. Las conversaciones completas están en la carpeta Documentacion/Promps/Matias Colomba/2IE.
+
+Version de Netbeans: 28
+
+JDK 25
