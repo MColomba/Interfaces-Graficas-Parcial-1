@@ -1,0 +1,31 @@
+Integrante: Máximo Paz
+
+Trabajo realizado:
+
+- Creación del paquete dao e implementación de la clase EcosistemaDAO para la persistencia del proyecto.
+
+- Definición y estructuración del formato de almacenamiento en archivo de texto plano (.txt).
+
+- Implementación del método de guardado completo de la simulación (estado del clima, turno actual, turnos totales y listas de entidades vivas con sus atributos).
+
+- Implementación del método de lectura del archivo y reconstrucción completa del objeto Ecosistema en memoria.
+
+- Desarrollo del manejo defensivo de errores y excepciones (archivo inexistente, líneas vacías, datos corruptos o incompletos).
+
+- Creación e integración de los botones visuales (Guardar Partida y Cargar Partida) en la interfaz gráfica mediante Swing en Apache NetBeans.
+
+- Conexión de la vista con la capa DAO mediante el uso de controladores (ControladorSimulacionAPI y ControladorPrincipal) respetando la arquitectura MVC.
+
+- Realización de pruebas de guardado, carga, recuperación de datos y continuidad de la simulación tras reiniciar la aplicación.
+
+Herramienta de IA utilizada:
+Gemini (Google AI)
+
+Uso de la IA:
+Se utilizó Gemini como herramienta de asistencia y colaboración en vivo para comprender e integrar las consignas específicas de la capa DAO, depurar advertencias y errores de compilación en Apache NetBeans, y asegurar que la comunicación entre las vistas y los controladores respetara la arquitectura MVC sin violar el encapsulamiento. La implementación del código se realizó de forma progresiva paso a paso, validando el manejo de excepciones y la lectura/escritura de archivos antes de subir los cambios a la rama secundaria en GitHub.
+
+Entorno de desarrollo: Apache NetBeans IDE
+
+JDK 25
+
+Lenguaje: Java
