@@ -60,9 +60,7 @@ Las capturas de las pantallas están en /Documentacion/Prompts. Cada uno de los 
 
 ## Uso de IA y fuentes
 
-Cada integrante documenta por separado las consultas a IA en `Documentacion/Promps/<nombre>/`. 
-El código se desarrolló con apoyo de Claude Code (Matias Colomba), .
-Las decisiones de diseño y su verificación son del grupo.
+Cada integrante documenta por separado las consultas a IA en `Documentacion/Promps/<nombre>/`.
 
 ## Desafíos encontrados
 
