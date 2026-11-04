@@ -56,7 +56,7 @@ Las capturas de las pantallas están en /Documentacion/Prompts. Cada uno de los 
 
 ## Video explicativo
 
-[Completar con el link al video de la segunda instancia]
+https://drive.google.com/drive/folders/1chuYo1Sfq-qPCapmybCGNhwtmqolcjbE
 
 ## Uso de IA y fuentes
 
